@@ -6,11 +6,11 @@
 #    By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/22 16:40:12 by bmbarga           #+#    #+#              #
-#    Updated: 2016/10/22 16:46:22 by bmbarga          ###   ########.fr        #
+#    Updated: 2016/10/22 17:16:52 by bmbarga          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = AbstractVM  
+NAME = avm 
 
 MAIN_DIR = main_functions/
 
