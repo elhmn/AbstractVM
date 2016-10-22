@@ -6,9 +6,17 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 16:52:42 by bmbarga           #+#    #+#             */
-/*   Updated: 2016/10/22 17:29:49 by bmbarga          ###   ########.fr       */
+/*   Updated: 2016/10/22 17:43:08 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** TODO
+**	- FILE READER
+**	- LEXER
+**	- PARSER
+**	- OTHER stuff requiered to run the program
+*/
 
 #include <iostream>
 
