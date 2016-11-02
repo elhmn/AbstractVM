@@ -10,18 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = avm 
+NAME = avm
 
 MAIN_DIR = main_functions/
 
-MAIN = main.cpp
+MAIN = main.cpp test.cpp
 
 MAINS =  $(addprefix $(MAIN_DIR), $(MAIN))
 
 SRC_OBJ = $(MAIN)
 
 SRC = 	$(MAINS)
-		
+
 OBJ = $(SRC_OBJ:.cpp=.o)
 
 OBJDIR = ./objs/
@@ -38,9 +38,9 @@ FLAG = -Wall -Werror -Wextra
 
 INCLUDES = -I ./includes/
 
-LIB = 
+LIB =
 
-CC = g++
+CC = g++ -std=c++11
 
 all: $(NAME)
 
@@ -60,6 +60,5 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C ./libft
 
 re: fclean all

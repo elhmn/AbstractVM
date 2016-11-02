@@ -13,6 +13,19 @@
 #ifndef IOPERAND_CLASS_HPP
 # define IOPERAND_CLASS_HPP
 
+/*
+** how can i do that without using intN_t types
+*/
+
+enum	eOperandType
+{
+	e_int_8,
+	e_int_16,
+	e_int_32,
+	e_float,
+	e_double
+};
+
 class IOperand
 {
 	public:
@@ -27,4 +40,4 @@ class IOperand
 		virtual ~IOperand( void ) {}
 };
 
-#endif 
+#endif
