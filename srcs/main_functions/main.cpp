@@ -10,6 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
+#include <iostream>
+#include "IOperand.class.hpp"
+#include "Vm.class.hpp"
+#include "test.hpp"
+
 /*
 ** TODO
 **	- FILE READER
@@ -19,23 +26,18 @@
 **	- OTHER stuff requiered to run the program
 */
 
-/*
-** Note don't forget you used c++11 flags for <cstdint>
-*/
-
-#include <iostream>
-#include "IOperand.class.hpp"
-
-void	test(void);
-
 int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
 	if (ac == 1)
-		//Read from standard input
-		std::cout << "I read from standard input" << std::endl; //Debug
+		std::cout << "I read from standard input" << std::endl;//_DEBUG_//
 	else
-		test();//Debug
+	{
+		std::cout << "I read from file" << std::endl;//_DEBUG_//
+		Vm * vm = Vm::getInstance();
+		(void)vm;
+		test();
+	}
 	return (0);
 }

@@ -13,14 +13,19 @@
 NAME = avm
 
 MAIN_DIR = main_functions/
+VM_DIR = vm/
+OP_DIR = op/
 
 MAIN = main.cpp test.cpp
+VM = Vm.class.cpp
+OP = IOperand.class.cpp
 
 MAINS =  $(addprefix $(MAIN_DIR), $(MAIN))
+VMS =  $(addprefix $(VM_DIR), $(VM))
 
-SRC_OBJ = $(MAIN)
+SRC_OBJ = $(MAIN) $(VM)
 
-SRC = 	$(MAINS)
+SRC = 	$(MAINS) $(VMS)
 
 OBJ = $(SRC_OBJ:.cpp=.o)
 
@@ -36,7 +41,11 @@ SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 FLAG = -Wall -Werror -Wextra
 
-INCLUDES = -I ./includes/
+INC_PATH = ./includes/
+
+INCLUDES =	-I ./includes/ \
+			-I $(addprefix $(INC_PATH), $(VM_DIR)) \
+			-I $(addprefix $(INC_PATH), $(OP_DIR)) \
 
 LIB =
 

@@ -14,5 +14,5 @@
 
 void		lexer(void)
 {
-	std::cout << "i lex file" << std::endl;
+	std::cout << "i lex file" << std::endl;//_DEBUG_//
 }
