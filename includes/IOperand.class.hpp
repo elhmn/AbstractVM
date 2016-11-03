@@ -19,11 +19,11 @@
 
 enum	eOperandType
 {
-	e_int_8,
-	e_int_16,
-	e_int_32,
-	e_float,
-	e_double
+	Int8,
+	Int16,
+	Int32,
+	Float,
+	Double
 };
 
 class IOperand

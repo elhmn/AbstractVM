@@ -40,7 +40,7 @@ INCLUDES = -I ./includes/
 
 LIB =
 
-CC = g++ -std=c++11
+CC = g++
 
 all: $(NAME)
 

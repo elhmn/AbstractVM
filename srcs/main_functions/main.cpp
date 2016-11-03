@@ -24,7 +24,6 @@
 */
 
 #include <iostream>
-#include <cstdint>
 #include "IOperand.class.hpp"
 
 void	test(void);

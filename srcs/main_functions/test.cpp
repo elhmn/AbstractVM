@@ -1,24 +1,19 @@
 #include <iostream>
-#include <cstdint>
+#include <limits>
 
 void		test(void)
 {
-	int8_t	i_8;
-	int16_t	i_16;
-	int32_t	i_32;
+	char		s_8; //8 bit 1 octet
+	short 		s_16; //16 bit 2 octets
+	int			s_32; //32 bit	4 octets
 
-	i_8 = static_cast<int8_t>(8000); //Debug
-	i_16 = static_cast<int16_t>(8000); //Debug
-	i_32 = static_cast<int32_t>(8000); //Debug
-	std::cout << "i_8 = [" << i_8 << "]" << std::endl; //Debug
-	std::cout << "int8_max = [" << INT8_MAX << "]" << std::endl; //Debug
-	std::cout << "int8_max = [" << INT8_MIN << "]" << std::endl; //Debug
-
-	std::cout << "i_16 = [" << i_16 << "]" << std::endl; //Debug
-	std::cout << "int16_max = [" << INT16_MAX << "]" << std::endl; //Debug
-	std::cout << "int16_max = [" << INT16_MIN << "]" << std::endl; //Debug
-
-	std::cout << "i_32 = [" << i_32 << "]" << std::endl; //Debug
-	std::cout << "int32_max = [" << INT32_MAX << "]" << std::endl; //Debug
-	std::cout << "int32_max = [" << INT32_MIN << "]" << std::endl; //Debug
+	(void)s_8;
+	(void)s_16;
+	(void)s_32;
+	std::cout << std::numeric_limits<short>::min() << std::endl;
+	std::cout << "sizeof short : " << sizeof(short) * 8 << std::endl;
+	std::cout << std::numeric_limits<short int>::min() << std::endl;
+	std::cout << "sizeof short int : " << sizeof(short int) * 8 << std::endl;
+	std::cout << std::numeric_limits<int>::min() << std::endl;
+	std::cout << "sizeof int : " << sizeof(int) * 8 << std::endl;
 }
