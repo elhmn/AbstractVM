@@ -1,6 +1,8 @@
 #ifndef VM_CLASS_HPP
 # define VM_CLASS_HPP
 
+# include "Stack.class.hpp"
+
 //c'est quoi encore la forme canonique
 //- constructor par defaut
 //- overload de l'operateur =
@@ -13,12 +15,13 @@ class	Vm
 
 //attributs
 	static Vm			*_firstInstance;
+	Stack				*_stack;
 
 //constructors
 	Vm(void);
 	Vm(Vm const &Vm);
 
-//destructors
+//destructor
 	~Vm(void);
 
 //operator overload

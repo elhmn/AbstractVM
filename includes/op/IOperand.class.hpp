@@ -13,6 +13,8 @@
 #ifndef IOPERAND_CLASS_HPP
 # define IOPERAND_CLASS_HPP
 
+# include <iostream>
+
 /*
 ** how can i do that without using intN_t types
 */

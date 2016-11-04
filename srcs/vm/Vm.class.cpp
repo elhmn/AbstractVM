@@ -5,7 +5,7 @@ bool	Vm::verbose = false;
 Vm		*Vm::_firstInstance = NULL;
 
 //constructors
-Vm::Vm(void)
+Vm::Vm(void) : _stack(NULL)
 {
 	if (Vm::verbose)
 		std::cout << "Vm constructor called" << std::endl;
@@ -15,7 +15,9 @@ Vm::Vm(void)
 Vm::~Vm(void)
 {
 	if (Vm::verbose)
-		std::cout << "vm destructor called" << std::endl;
+		std::cout << "Vm destructor called" << std::endl;
+	if (Vm::_firstInstance)
+		delete Vm::_firstInstance;
 }
 
 //getters

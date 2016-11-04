@@ -15,17 +15,21 @@ NAME = avm
 MAIN_DIR = main_functions/
 VM_DIR = vm/
 OP_DIR = op/
+STACK_DIR = stack/
 
 MAIN = main.cpp test.cpp
 VM = Vm.class.cpp
-OP = IOperand.class.cpp
+OP = 
+STACK = Stack.class.cpp
 
 MAINS =  $(addprefix $(MAIN_DIR), $(MAIN))
 VMS =  $(addprefix $(VM_DIR), $(VM))
+OPS =  $(addprefix $(OP_DIR), $(OP))
+STACKS =  $(addprefix $(STACK_DIR), $(STACK))
 
-SRC_OBJ = $(MAIN) $(VM)
+SRC_OBJ = $(MAIN) $(VM) $(OP) $(STACK)
 
-SRC = 	$(MAINS) $(VMS)
+SRC = 	$(MAINS) $(VMS) $(OPS) $(STACKS)
 
 OBJ = $(SRC_OBJ:.cpp=.o)
 
@@ -46,6 +50,7 @@ INC_PATH = ./includes/
 INCLUDES =	-I ./includes/ \
 			-I $(addprefix $(INC_PATH), $(VM_DIR)) \
 			-I $(addprefix $(INC_PATH), $(OP_DIR)) \
+			-I $(addprefix $(INC_PATH), $(STACK_DIR)) \
 
 LIB =
 

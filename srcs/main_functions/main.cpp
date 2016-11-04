@@ -15,7 +15,6 @@
 #include <iostream>
 #include "IOperand.class.hpp"
 #include "Vm.class.hpp"
-#include "test.hpp"
 
 /*
 ** TODO
@@ -35,9 +34,8 @@ int		main(int ac, char **av)
 	else
 	{
 		std::cout << "I read from file" << std::endl;//_DEBUG_//
-		Vm * vm = Vm::getInstance();
-		(void)vm;
-		test();
+		Vm * vm = Vm::getInstance();//_DEBUG_//
+		(void)vm;//_DEBUG_//
 	}
 	return (0);
 }
