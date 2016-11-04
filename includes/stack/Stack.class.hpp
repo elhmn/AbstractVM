@@ -28,8 +28,16 @@ class	Stack
 	Stack	&getStack(void) const;
 
 //actions
-//--------------------//
-
+	void	assert(IOperand const *o) const;
+	void	push(IOperand const *o);
+	void	print(void) const;
+	void	dump(void) const;
+	void	pop(void);
+	void	add(void);
+	void	sub(void);
+	void	mul(void);
+	void	div(void);
+	void	mod(void);
 };
 
 #endif
