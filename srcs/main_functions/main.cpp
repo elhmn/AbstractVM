@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include "IOperand.class.hpp"
+#include "Operand.class.hpp"
 #include "Vm.class.hpp"
 
 /*
@@ -24,6 +25,8 @@
 **	- EXEC
 **	- OTHER stuff requiered to run the program
 */
+
+void	test(void);
 
 int		main(int ac, char **av)
 {
@@ -36,6 +39,8 @@ int		main(int ac, char **av)
 		std::cout << "I read from file" << std::endl;//_DEBUG_//
 		Vm * vm = Vm::getInstance();//_DEBUG_//
 		(void)vm;//_DEBUG_//
+// 		test();//_DEBUG_//
+		Operand<t_int8>		o(Int8, 10);
 	}
 	return (0);
 }

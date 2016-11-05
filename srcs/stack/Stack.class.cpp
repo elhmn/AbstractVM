@@ -18,7 +18,7 @@ Stack::~Stack(void)
 }
 
 //getters
-Stack	&Stack::getStack(void) const
+std::stack<IOperand*> *Stack::getStack(void) const
 {
 	return (this->_stack);
 }

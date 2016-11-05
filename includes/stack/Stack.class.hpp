@@ -25,7 +25,7 @@ class	Stack
 	Stack	&operator=(Stack const &rhs);
 
 //getters
-	Stack	&getStack(void) const;
+	std::stack<IOperand*>	*getStack(void) const;
 
 //actions
 	void	assert(IOperand const *o) const;

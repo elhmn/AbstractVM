@@ -14,19 +14,11 @@
 # define IOPERAND_CLASS_HPP
 
 # include <iostream>
+# include "vm_types.hpp"
 
 /*
 ** how can i do that without using intN_t types
 */
-
-enum	eOperandType
-{
-	Int8,
-	Int16,
-	Int32,
-	Float,
-	Double
-};
 
 class IOperand
 {
