@@ -2,10 +2,10 @@
 # define OPERAND_CLASS_HPP
 
 # include "IOperand.class.hpp"
-#include <typeinfo>
+# include <typeinfo>
+# include <vector>
 
 // TODO:
-// - Operator = overloading
 // - Exception handling
 // - set std::string _sVal
 // - maybe find a smarter way to return
@@ -27,7 +27,7 @@ class		 Operand: public IOperand
 	virtual ~Operand(void);
 
 //operator overload
-	IOperand const &operator=(IOperand const &rhs) const;
+	IOperand &operator=(IOperand const &rhs);
 
 //getters
 	T	getValue(void) const;
@@ -52,6 +52,14 @@ class		 Operand: public IOperand
 	std::string		_sVal;
 	eOperandType	_type;
 };
+
+
+//operand cast
+Operand<t_int8> const	*castInt8(void *op);
+Operand<t_int16> const	*castInt16(void *op);
+Operand<t_int32> const	*castInt32(void *op);
+Operand<t_float> const	*castFloat(void *op);
+Operand<t_double> const	*castDouble(void *op);
 
 template<typename T>
 bool	Operand<T>::verbose = false;

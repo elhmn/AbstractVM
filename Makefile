@@ -19,7 +19,7 @@ STACK_DIR = stack/
 
 MAIN = main.cpp test.cpp
 VM = Vm.class.cpp
-OP = 
+OP = Operand.class.cpp
 STACK = Stack.class.cpp
 
 MAINS =  $(addprefix $(MAIN_DIR), $(MAIN))

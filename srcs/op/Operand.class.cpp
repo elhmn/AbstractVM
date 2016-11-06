@@ -1,15 +1,26 @@
 #include "Operand.class.hpp"
 
-bool		Operand::verbose = false;
-
-Operand::Operand(void)
+Operand<t_int8>	const *castInt8(void *op)
 {
-	if (Operand::verbose)
-		std::cout << "Operand constructor called" << std::endl;
+	return (reinterpret_cast<Operand<t_int8> const *>(op));
 }
 
-Operand::~Operand(void)
+Operand<t_int16> const	*castInt16(void *op)
 {
-	if (Operand::verbose)
-		std::cout << "Operand destructor called" << std::endl;
+	return (reinterpret_cast<Operand<t_int16> const *>(op));
+}
+
+Operand<t_int32> const	*castInt32(void *op)
+{
+	return (reinterpret_cast<Operand<t_int32> const *>(op));
+}
+
+Operand<t_float> const	*castFloat(void *op)
+{
+	return (reinterpret_cast<Operand<t_float> const *>(op));
+}
+
+Operand<t_double> const *castDouble(void *op)
+{
+	return (reinterpret_cast<Operand<t_double> const *>(op));
 }
