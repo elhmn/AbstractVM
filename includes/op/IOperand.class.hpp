@@ -17,7 +17,8 @@
 # include "vm_types.hpp"
 
 /*
-** how can i do that without using intN_t types
+** how can i do that without using intN_t types ?
+** just use standart c++98 types (char, short, int, float, double)
 */
 
 class IOperand

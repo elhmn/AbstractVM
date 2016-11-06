@@ -4,12 +4,10 @@
 # include "IOperand.class.hpp"
 # include <typeinfo>
 # include <vector>
+# include <sstream>
 
 // TODO:
-// - Exception handling
-// - set std::string _sVal
-// - maybe find a smarter way to return
-// 		multiple types in a function
+// - Exception handling (i'll do that later)
 
 template<typename T>
 class		 Operand: public IOperand
@@ -68,11 +66,15 @@ bool	Operand<T>::verbose = false;
 template<typename T>
 Operand<T>::Operand(eOperandType type, T val) : _val(val), _type(type)
 {
+	std::stringstream	ss;
+
 	if (Operand<T>::verbose)
 		std::cout << "Operand constructor called" << std::endl;
 	// check that the value is not out of range
 	// if the value is out range crop it to max value 
 	// er let c+ compiler do is own stuff
+	ss << this->_val;
+	this->_sVal = ss.str();
 }
 
 //destructor
@@ -391,7 +393,6 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 template<typename T>
 std::string const & Operand<T>::toString(void) const
 {
-	//implement the real function
 	return (this->_sVal);
 }
 

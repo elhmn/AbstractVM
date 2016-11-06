@@ -14,8 +14,9 @@
 
 #include <iostream>
 #include "IOperand.class.hpp"
-#include "Operand.class.hpp"
+#include "Operand.class.hpp"//_DEBUG_//
 #include "Vm.class.hpp"
+#include <sstream>//_DEBUG_//
 
 /*
 ** TODO
@@ -40,44 +41,10 @@ int		main(int ac, char **av)
 		Vm * vm = Vm::getInstance();//_DEBUG_//
 		(void)vm;//_DEBUG_//
 		test();//_DEBUG_//
-		Operand<t_int8>		o(Int8, 10);
-		Operand<t_int16>	e(Int16, 100);
-		Operand<t_int32>	i(Int32, 100);
-		Operand<t_double>	d(Double, 100.3);
-		Operand<t_float>	f(Float, 100.98);
-// 		Operand<t_float>	g(Float, 10);
-		IOperand const		*g;
+		std::stringstream	ss;
 
-		g = o + e; //int8
-		(void)g;
-// 		g = e + o; //int16
-// 		g = e + i; //int16
-// 		g = e + d; //Double
-// 		g = e + f; //Float
-		std::cout << "-----------------------" << std::endl;
-		o / e; //int8
-		e / o; //int16
-		e / i; //int16
-		e / d; //Double
-		e / f; //Float
-		std::cout << "-----------------------" << std::endl;
-		o % e; //int8
-		e % o; //int16
-		e % i; //int16
-		e % d; //Double
-		e % f; //Float
-		std::cout << "-----------------------" << std::endl;
-		o - e; //int8
-		e - o; //int16
-		e - i; //int16
-		e - d; //Double
-		e - f; //Float
-		std::cout << "-----------------------" << std::endl;
-		o * e; //int8
-		e * o; //int16
-		e * i; //int16
-		e * d; //Double
-		e * f; //Float
+		ss << 10;
+		std::cout << ss.str() << std::endl;
 	}
 	return (0);
 }

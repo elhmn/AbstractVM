@@ -2,6 +2,7 @@
 #include <limits>
 #include "Vm.class.hpp"
 #include "IOperand.class.hpp"
+#include "Operand.class.hpp"//_DEBUG_//
 
 // template<typename U, typename V=float>
 // class		Type
@@ -115,5 +116,42 @@ void		test(void)
 // 	std::cout << "sizeof short = " << sizeof(short) << std::endl;//_DEBUG_//
 // 	std::cout << "sizeof int = " << sizeof(int) << std::endl;//_DEBUG_//
 // 	std::cout << "sizeof float = " << sizeof(float) << std::endl;//_DEBUG_//
-// 	std::cout << "sizeof double = " << sizeof(double) << std::endl;//_DEBUG_//
+		Operand<t_int8>		o(Int8, 10);
+		Operand<t_int16>	e(Int16, 100);
+		Operand<t_int32>	i(Int32, 100);
+		Operand<t_double>	d(Double, 100.3);
+		Operand<t_float>	f(Float, 100.98);
+		IOperand const		*g;
+
+		g = o + e; //int8
+		(void)g;
+		std::cout << (e * o)->toString() << std::endl; //int16
+		e + i; //int16
+		e + d; //Double
+		e + f; //Float
+		std::cout << "-----------------------" << std::endl;
+		o / e; //int8
+		e / o; //int16
+		e / i; //int16
+		e / d; //Double
+		e / f; //Float
+		std::cout << "-----------------------" << std::endl;
+		o % e; //int8
+		e % o; //int16
+		e % i; //int16
+		e % d; //Double
+		e % f; //Float
+		std::cout << "-----------------------" << std::endl;
+		o - e; //int8
+		e - o; //int16
+		e - i; //int16
+		e - d; //Double
+		e - f; //Float
+		std::cout << "-----------------------" << std::endl;
+		o * e; //int8
+		e * o; //int16
+		e * i; //int16
+		e * d; //Double
+		e * f; //Float
+ 	std::cout << "sizeof double = " << sizeof(double) << std::endl;//_DEBUG_//
 }
