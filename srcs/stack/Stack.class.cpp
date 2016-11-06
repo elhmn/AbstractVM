@@ -71,3 +71,45 @@ void	Stack::dump(void) const
 		tmp.pop();
 	}
 }
+
+void	Stack::pop(void)
+{
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	if (this->_stack->empty())
+	{
+		//here throw the exception
+		std::cout << "can't pop on an empty stack" << std::endl;
+		exit(0);
+	}
+	delete this->_stack->top();
+	this->_stack->pop();
+}
+
+void	Stack::add(void)
+{
+	std::cout <<  "I add" << std::endl;
+}
+
+void	Stack::sub(void)
+{
+	std::cout <<  "I sub" << std::endl;
+}
+
+void	Stack::mul(void)
+{
+	std::cout <<  "I mul" << std::endl;
+}
+
+void	Stack::div(void)
+{
+	std::cout <<  "I div" << std::endl;
+}
+
+void	Stack::mod(void)
+{
+	std::cout <<  "I mod" << std::endl;
+}

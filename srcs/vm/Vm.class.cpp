@@ -62,16 +62,32 @@ void	Vm::run(void)
 			std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
 			exit(0);
 		}
-
 //_DEBUG_//
 		this->_stack->push(new Operand<t_int8>(Int8, 1));
 		this->_stack->push(new Operand<t_int16>(Int16, 2));
 		this->_stack->push(new Operand<t_int32>(Int32, 3));
+		this->_stack->push(new Operand<t_double>(Double, 32.05));
+		this->_stack->push(new Operand<t_float>(Float, 3.34));
 		this->_stack->dump();
 		std::cout << "-------------------" << std::endl;
+		this->_stack->pop();
 		this->_stack->dump();
 		std::cout << "-------------------" << std::endl;
+		this->_stack->pop();
 		this->_stack->dump();
+		std::cout << "-------------------" << std::endl;
+		this->_stack->pop();
+		this->_stack->dump();
+		std::cout << "-------------------" << std::endl;
+		this->_stack->pop();
+		this->_stack->dump();
+		std::cout << "-------------------" << std::endl;
+		this->_stack->pop();
+		this->_stack->dump();
+// 		std::cout << "-------------------" << std::endl;
+// 		this->_stack->pop();
+// 		this->_stack->dump();
+
 //_DEBUG_//
 
 // 		Read() from stdin
