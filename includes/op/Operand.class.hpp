@@ -73,7 +73,10 @@ Operand<T>::Operand(eOperandType type, T val) : _val(val), _type(type)
 	// check that the value is not out of range
 	// if the value is out range crop it to max value 
 	// er let c+ compiler do is own stuff
-	ss << this->_val;
+	if (type == Int8)
+		ss << static_cast<t_int16>(this->_val);
+	else
+		ss << this->_val;
 	this->_sVal = ss.str();
 }
 

@@ -33,6 +33,10 @@ class	Vm
 
 //getters
 	static Vm	*getInstance(void);
+
+//run
+	void				run(void);
+	void				run(std::string path);
 };
 
 #endif

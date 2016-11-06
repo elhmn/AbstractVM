@@ -1,11 +1,13 @@
 #include "Vm.class.hpp"
+#include "Operand.class.hpp"
 #include <iostream>
+#include <cstdlib>
 
 bool	Vm::verbose = false;
 Vm		*Vm::_firstInstance = NULL;
 
 //constructors
-Vm::Vm(void) : _stack(NULL)
+Vm::Vm(void):_stack(NULL)
 {
 	if (Vm::verbose)
 		std::cout << "Vm constructor called" << std::endl;
@@ -33,4 +35,52 @@ Vm		*Vm::getInstance(void)
 		}
 	}
 	return (Vm::_firstInstance);
+}
+
+void	Vm::run(std::string path)
+{
+	(void)path;
+	if (!(this->_stack = new Stack()))
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+// 	Read() from path 
+//	Lexer()
+//	Parse()
+//	Exec()
+//	clear stack ()
+	std::cout << "vm run from file" << std::endl;
+}
+
+void	Vm::run(void)
+{
+// 	while (42) //condition de reprise
+// 	{
+		if (!(this->_stack = new Stack()))
+		{
+			std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+			exit(0);
+		}
+
+//_DEBUG_//
+		this->_stack->push(new Operand<t_int8>(Int8, 1));
+		this->_stack->push(new Operand<t_int16>(Int16, 2));
+		this->_stack->push(new Operand<t_int32>(Int32, 3));
+		this->_stack->dump();
+		std::cout << "-------------------" << std::endl;
+		this->_stack->dump();
+		std::cout << "-------------------" << std::endl;
+		this->_stack->dump();
+//_DEBUG_//
+
+// 		Read() from stdin
+//		Lexer()
+//		Parse()
+//		Exec()
+//		clear stack ()
+//		delete stack ()
+//		set stack to NULL
+ 		std::cout << "vm run" << std::endl;
+// 	}
 }

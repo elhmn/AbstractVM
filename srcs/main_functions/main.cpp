@@ -10,13 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include <iostream>
-#include "IOperand.class.hpp"
-#include "Operand.class.hpp"//_DEBUG_//
 #include "Vm.class.hpp"
-#include <sstream>//_DEBUG_//
 
 /*
 ** TODO
@@ -27,24 +22,24 @@
 **	- OTHER stuff requiered to run the program
 */
 
-void	test(void);
-
 int		main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
+	Vm * vm = NULL;
+	
+	if (!(vm = Vm::getInstance()))
+	{
+		std::cout << "vm instantiation error" << std::endl;
+		return (0);
+	}
 	if (ac == 1)
+	{
 		std::cout << "I read from standard input" << std::endl;//_DEBUG_//
+		vm->run();
+	}
 	else
 	{
 		std::cout << "I read from file" << std::endl;//_DEBUG_//
-		Vm * vm = Vm::getInstance();//_DEBUG_//
-		(void)vm;//_DEBUG_//
-		test();//_DEBUG_//
-		std::stringstream	ss;
-
-		ss << 10;
-		std::cout << ss.str() << std::endl;
+		vm->run(av[1]);
 	}
 	return (0);
 }

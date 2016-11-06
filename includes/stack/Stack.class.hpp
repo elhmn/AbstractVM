@@ -8,7 +8,7 @@ class	Stack
 {
 	private:
 //attributs
-	std::stack<IOperand*>		*_stack;
+	std::stack<IOperand const*>		*_stack;
 
 	public:
 //attributs
@@ -25,7 +25,7 @@ class	Stack
 	Stack	&operator=(Stack const &rhs);
 
 //getters
-	std::stack<IOperand*>	*getStack(void) const;
+	std::stack<IOperand const*>	*getStack(void) const;
 
 //actions
 	void	assert(IOperand const *o) const;
