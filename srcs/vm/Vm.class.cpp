@@ -66,14 +66,13 @@ void	Vm::run(void)
 		this->_stack->push(new Operand<t_int8>(Int8, 1));
 		this->_stack->push(new Operand<t_int16>(Int16, 2));
 		this->_stack->push(new Operand<t_int32>(Int32, 3));
-		this->_stack->push(new Operand<t_double>(Double, 32.05));
+		this->_stack->push(new Operand<t_double>(Double, 32.0));
 // 		this->_stack->dump();
-		this->_stack->push(new Operand<t_float>(Float, 3.34));
+		this->_stack->push(new Operand<t_float>(Float, 2.0));
 // 		this->_stack->dump();
 
-		
 		std::cout << "-------------------" << std::endl;//_DEBUG_//
-		this->_stack->add();
+		this->_stack->mul();
 		this->_stack->dump();
 
 // 		this->_stack->dump();

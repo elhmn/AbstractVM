@@ -28,6 +28,13 @@ std::stack<IOperand const *> *Stack::getStack(void) const
 }
 
 //actions
+void		Stack::assert(IOperand const *o) const
+{
+// 	check if o type and value are equal to Operand at the top of the Stack
+	(void)o;
+	std::cout << "I assert something" << std::endl;
+}
+
 void		Stack::push(IOperand const *o)
 {
 	if (!this->_stack)
@@ -46,6 +53,13 @@ void		Stack::push(IOperand const *o)
 		exit(0);
 	}
 	this->_stack->push(o);
+}
+
+void	Stack::print(void) const
+{
+	std::cout << "I assert" << std::endl;
+	//assert that the value at the top of the stack is an 8-bit integer
+	//then display the corresponding ascii character to the output
 }
 
 void	Stack::dump(void) const
@@ -111,13 +125,18 @@ void	Stack::add(void)
 	this->_stack->pop();
 	b = this->_stack->top();
 	this->_stack->pop();
-	this->push(*a + *b);
+	this->push(*b + *a);
 	std::cout << "add those value then" << std::endl;//_DEBUG_//
 // 	std::cout <<  "I add" << std::endl;//_DEBUG_//
 }
 
 void	Stack::sub(void)
 {
+	IOperand const *a;
+	IOperand const *b;
+
+	a = NULL;
+	b = NULL;
 	if (!this->_stack)
 	{
 		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
@@ -126,14 +145,24 @@ void	Stack::sub(void)
 	if (this->_stack->size() < 2)
 	{
 		//here throw the appropriate exception
-		std::cout << "can't add less than two values" << std::endl;
+		std::cout << "can't sub less than two values" << std::endl;
 		exit(0);
 	}
+	a = this->_stack->top();
+	this->_stack->pop();
+	b = this->_stack->top();
+	this->_stack->pop();
+	this->push(*b - *a);
 	std::cout <<  "I sub" << std::endl;
 }
 
 void	Stack::mul(void)
 {
+	IOperand const *a;
+	IOperand const *b;
+
+	a = NULL;
+	b = NULL;
 	if (!this->_stack)
 	{
 		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
@@ -142,14 +171,24 @@ void	Stack::mul(void)
 	if (this->_stack->size() < 2)
 	{
 		//here throw the appropriate exception
-		std::cout << "can't add less than two values" << std::endl;
+		std::cout << "can't mult less than two values" << std::endl;
 		exit(0);
 	}
+	a = this->_stack->top();
+	this->_stack->pop();
+	b = this->_stack->top();
+	this->_stack->pop();
+	this->push(*b * *a);
 	std::cout <<  "I mul" << std::endl;
 }
 
 void	Stack::div(void)
 {
+	IOperand const *a;
+	IOperand const *b;
+
+	a = NULL;
+	b = NULL;
 	if (!this->_stack)
 	{
 		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
@@ -158,14 +197,25 @@ void	Stack::div(void)
 	if (this->_stack->size() < 2)
 	{
 		//here throw the appropriate exception
-		std::cout << "can't add less than two values" << std::endl;
+		std::cout << "can't div less than two values" << std::endl;
 		exit(0);
 	}
+	a = this->_stack->top();
+	this->_stack->pop();
+	b = this->_stack->top();
+	this->_stack->pop();
+	// don't forget to throw the div by zero exception
+	this->push(*b / *a);
 	std::cout <<  "I div" << std::endl;
 }
 
 void	Stack::mod(void)
 {
+	IOperand const *a;
+	IOperand const *b;
+
+	a = NULL;
+	b = NULL;
 	if (!this->_stack)
 	{
 		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
@@ -174,8 +224,15 @@ void	Stack::mod(void)
 	if (this->_stack->size() < 2)
 	{
 		//here throw the appropriate exception
-		std::cout << "can't add less than two values" << std::endl;
+		std::cout << "can't mod less than two values" << std::endl;
 		exit(0);
 	}
+	a = this->_stack->top();
+	this->_stack->pop();
+	b = this->_stack->top();
+	this->_stack->pop();
+	// don't forget to throw the mod by zero exception
+	// and check also whether operand types is float or fouble
+	this->push(*b % *a);
 	std::cout <<  "I mod" << std::endl;
 }
