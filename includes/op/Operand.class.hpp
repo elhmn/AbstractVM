@@ -71,8 +71,10 @@ Operand<T>::Operand(eOperandType type, T val) : _val(val), _type(type)
 	if (Operand<T>::verbose)
 		std::cout << "Operand constructor called" << std::endl;
 	// check that the value is not out of range
-	// if the value is out range crop it to max value 
-	// er let c+ compiler do is own stuff
+	// if the value is out range crop it to max value
+	// or let c++ compiler do is own stuff
+	//
+	// Also if it is a int8 (a char then) cast it into a int16
 	if (type == Int8)
 		ss << static_cast<t_int16>(this->_val);
 	else

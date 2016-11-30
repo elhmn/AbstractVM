@@ -91,25 +91,91 @@ void	Stack::pop(void)
 
 void	Stack::add(void)
 {
-	std::cout <<  "I add" << std::endl;
+	IOperand const *a;
+	IOperand const *b;
+
+	a = NULL;
+	b = NULL;
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	if (this->_stack->size() < 2)
+	{
+		//here throw the appropriate exception
+		std::cout << "can't add less than two values" << std::endl;
+		exit(0);
+	}
+	a = this->_stack->top();
+	this->_stack->pop();
+	b = this->_stack->top();
+	this->_stack->pop();
+	this->push(*a + *b);
+	std::cout << "add those value then" << std::endl;//_DEBUG_//
+// 	std::cout <<  "I add" << std::endl;//_DEBUG_//
 }
 
 void	Stack::sub(void)
 {
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	if (this->_stack->size() < 2)
+	{
+		//here throw the appropriate exception
+		std::cout << "can't add less than two values" << std::endl;
+		exit(0);
+	}
 	std::cout <<  "I sub" << std::endl;
 }
 
 void	Stack::mul(void)
 {
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	if (this->_stack->size() < 2)
+	{
+		//here throw the appropriate exception
+		std::cout << "can't add less than two values" << std::endl;
+		exit(0);
+	}
 	std::cout <<  "I mul" << std::endl;
 }
 
 void	Stack::div(void)
 {
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	if (this->_stack->size() < 2)
+	{
+		//here throw the appropriate exception
+		std::cout << "can't add less than two values" << std::endl;
+		exit(0);
+	}
 	std::cout <<  "I div" << std::endl;
 }
 
 void	Stack::mod(void)
 {
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	if (this->_stack->size() < 2)
+	{
+		//here throw the appropriate exception
+		std::cout << "can't add less than two values" << std::endl;
+		exit(0);
+	}
 	std::cout <<  "I mod" << std::endl;
 }
