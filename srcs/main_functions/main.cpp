@@ -22,6 +22,7 @@
 **	- OTHER stuff requiered to run the program
 **	Don't forget :
 **		-Handle every error types with exceptions
+**		-Build a Factory class to create Operands
 */
 
 int		main(int ac, char **av)
