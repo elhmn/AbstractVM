@@ -70,7 +70,6 @@ void	Vm::run(void)
 		this->_stack->push(new Operand<t_float>(Float, 2.0));
 		this->_stack->push(new Operand<t_int8>(Int8, 23));
 		this->_stack->push(new Operand<t_int8>(Int8, 'j'));
-
 		this->_stack->print(); //Debug
 		this->_stack->assert(new Operand<t_int8>(Int8, 'j'));
 
@@ -123,4 +122,10 @@ void	Vm::run(void)
 //		set stack to NULL
  		std::cout << "vm run" << std::endl;
 // 	}
+}
+
+//actions
+void	Vm::vm_exit(void)
+{
+	exit(0);
 }

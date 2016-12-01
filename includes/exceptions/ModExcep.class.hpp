@@ -5,7 +5,7 @@
 
 class	ModExcep : public std::exception
 {
-	public:
+	public :
 	virtual const char *what(void) throw();
 };
 

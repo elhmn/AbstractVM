@@ -32,7 +32,10 @@ class	Vm
 	static bool			verbose;
 
 //getters
-	static Vm		*getInstance(void);
+	static Vm			*getInstance(void);
+
+//actions
+ 	static void				vm_exit(void);
 
 //run
 	void				run(void);

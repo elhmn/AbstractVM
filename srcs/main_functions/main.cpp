@@ -20,6 +20,8 @@
 **	- PARSER
 **	- EXEC
 **	- OTHER stuff requiered to run the program
+**	Don't forget :
+**		-Handle every error types with exceptions
 */
 
 int		main(int ac, char **av)
