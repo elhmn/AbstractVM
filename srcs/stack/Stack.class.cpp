@@ -1,4 +1,5 @@
 #include "Stack.class.hpp"
+#include "Operand.class.hpp"
 #include <iostream>
 #include <cstdlib>
 
@@ -30,9 +31,38 @@ std::stack<IOperand const *> *Stack::getStack(void) const
 //actions
 void		Stack::assert(IOperand const *o) const
 {
-// 	check if o type and value are equal to Operand at the top of the Stack
-	(void)o;
-	std::cout << "I assert something" << std::endl;
+	IOperand const *tmp;
+	Operand<t_double> const *o1;
+	Operand<t_double> const *o2;
+	
+	o1 = NULL;
+	o2 = NULL;
+	tmp = NULL;
+	if (!o)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	tmp = this->_stack->top();
+	if (!tmp || tmp->getType() != o->getType())
+	{
+		std::cout << "Do not assert" << std::endl;//_DEBUG_//
+		exit(0);//_DEBUG_//
+	}
+	o1 = castDouble((void*)tmp);
+	o2 = castDouble((void*)o);
+	if (o1->getValue() != o2->getValue())
+	{
+		//throw expcetion or catch an  assert exception exception
+		std::cout << "Do not assert" << std::endl;//_DEBUG_//
+		exit(0);//_DEBUG_//
+	}
+	std::cout << "I asserted something" << std::endl;
 }
 
 void		Stack::push(IOperand const *o)
@@ -57,7 +87,22 @@ void		Stack::push(IOperand const *o)
 
 void	Stack::print(void) const
 {
-	std::cout << "I assert" << std::endl;
+	IOperand const *o;
+	
+	o = NULL;
+	if (!this->_stack)
+	{
+		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
+		exit(0);
+	}
+	o = this->_stack->top();
+	if (!o || o->getType() != Int8)
+	{
+		//throw expcetion or catch an  exception
+		std::cout << "Can't print" << std::endl;//_DEBUG_//
+		exit(0);//_DEBUG_//
+	}
+	std::cout << castInt8((void*)o)->getValue() << std::endl;
 	//assert that the value at the top of the stack is an 8-bit integer
 	//then display the corresponding ascii character to the output
 }

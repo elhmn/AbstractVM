@@ -31,6 +31,7 @@ class		 Operand: public IOperand
 
 //getters
 	T	getValue(void) const;
+	std::string		getSVal(void) const;
 
 //IOperand interface
 
@@ -97,6 +98,12 @@ template<typename T>
 T	Operand<T>::getValue(void) const
 {
 	return (this->_val);
+}
+
+template<typename T>
+std::string		Operand<T>::getSVal(void) const
+{
+	return (this->_sVal);
 }
 
 template<typename T>
@@ -219,7 +226,6 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 			return (static_cast<IOperand const *>(new Operand(type, this->getValue() - op->getValue())));
 		}
 	}
-	std::cout << "Error " << std::endl;//_DEBUG_//
 	return (NULL);
 	// here you must use Operand factory (not sure)
 }
@@ -275,7 +281,6 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 			return (static_cast<IOperand const *>(new Operand(type, this->getValue() * op->getValue())));
 		}
 	}
-	std::cout << "Error " << std::endl;//_DEBUG_//
 	return (NULL);
 }
 
@@ -340,9 +345,6 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 		 	return (static_cast<IOperand const *>(new Operand(type, this->getValue() / op->getValue())));
 		}
 	}
-	// here you must use Operand factory (not sure)
-	// if denum == 0 throw exeption
-	std::cout << "Error " << std::endl;//_DEBUG_//
 	return (NULL);
 
 }
@@ -414,9 +416,6 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
 	}
-	// here you must use Operand factory (not sure)
-	// if denum == 0 throw exeption
-	std::cout << "Error " << std::endl;//_DEBUG_//
 	return (NULL);
 }
 

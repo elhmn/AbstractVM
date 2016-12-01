@@ -22,7 +22,7 @@ MAIN = main.cpp test.cpp
 VM = Vm.class.cpp
 OP = Operand.class.cpp
 STACK = Stack.class.cpp
-EXCEP = DivExcep.class.cpp ModExcep.class.cpp
+EXCEP = DivExcep.class.cpp ModExcep.class.cpp WrongTypeExcep.class.cpp
 
 MAINS =  $(addprefix $(MAIN_DIR), $(MAIN))
 VMS =  $(addprefix $(VM_DIR), $(VM))

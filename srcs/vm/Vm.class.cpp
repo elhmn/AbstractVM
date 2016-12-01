@@ -68,8 +68,11 @@ void	Vm::run(void)
 		this->_stack->push(new Operand<t_int32>(Int32, 3));
 		this->_stack->push(new Operand<t_double>(Double, 32.0));
 		this->_stack->push(new Operand<t_float>(Float, 2.0));
-// 		this->_stack->push(new Operand<t_int8>(Int8, 23));
-// 		this->_stack->push(new Operand<t_int8>(Int8, 0));
+		this->_stack->push(new Operand<t_int8>(Int8, 23));
+		this->_stack->push(new Operand<t_int8>(Int8, 'j'));
+
+		this->_stack->print(); //Debug
+		this->_stack->assert(new Operand<t_int8>(Int8, 'j'));
 
 		std::cout << "-------------------" << std::endl;//_DEBUG_//
 
