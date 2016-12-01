@@ -3,13 +3,15 @@
 class		Excep : public std::exception
 {
 	public :
+
 	virtual const char* what() throw()
 	{
 		return ("bonjour copain");
 	}
+
 };
 
-void		test(void)
+void		test(void) throw(Excep)
 {
 	throw Excep();
 }

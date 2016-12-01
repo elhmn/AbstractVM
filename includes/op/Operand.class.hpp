@@ -2,6 +2,8 @@
 # define OPERAND_CLASS_HPP
 
 # include "IOperand.class.hpp"
+# include "DivExcep.class.hpp"
+# include "ModExcep.class.hpp"
 # include <typeinfo>
 # include <vector>
 # include <sstream>
@@ -288,6 +290,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
  		Operand<t_int8> const	*op = dynamic_cast<Operand<t_int8> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, this->getValue() / op->getValue())));
 		}
@@ -297,6 +301,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
  		Operand<t_int16> const	*op = dynamic_cast<Operand<t_int16> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, this->getValue() / op->getValue())));
 		}
@@ -306,6 +312,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
  		Operand<t_int32> const	*op = dynamic_cast<Operand<t_int32> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, this->getValue() / op->getValue())));
 		}
@@ -315,6 +323,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
  		Operand<t_float> const	*op = dynamic_cast<Operand<t_float> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
  			return (static_cast<IOperand const *>(new Operand(type, this->getValue() / op->getValue())));
 		}
@@ -324,6 +334,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
  		Operand<t_double> const	*op = dynamic_cast<Operand<t_double> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, this->getValue() / op->getValue())));
 		}
@@ -342,13 +354,18 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 
 	if (this->getType() == Double || this->getType() == Float
 		|| rhs.getType() == Float || rhs.getType() == Double)
+	{
+		throw ModExcep();
 		return (NULL); //do something in that case
+	}
 	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
 	if (rhs.getType() == Int8)
 	{
  		Operand<t_int8> const	*op = dynamic_cast<Operand<t_int8> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -358,6 +375,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
  		Operand<t_int16> const	*op = dynamic_cast<Operand<t_int16> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -367,6 +386,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
  		Operand<t_int32> const	*op = dynamic_cast<Operand<t_int32> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -376,6 +397,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
  		Operand<t_float> const	*op = dynamic_cast<Operand<t_float> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
  			return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -385,6 +408,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
  		Operand<t_double> const	*op = dynamic_cast<Operand<t_double> const *>(&rhs);
 		if (op)
 		{
+			if (op->getValue() == 0)
+				throw DivExcep();
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}

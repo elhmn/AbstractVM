@@ -67,12 +67,25 @@ void	Vm::run(void)
 		this->_stack->push(new Operand<t_int16>(Int16, 2));
 		this->_stack->push(new Operand<t_int32>(Int32, 3));
 		this->_stack->push(new Operand<t_double>(Double, 32.0));
-// 		this->_stack->dump();
 		this->_stack->push(new Operand<t_float>(Float, 2.0));
-// 		this->_stack->dump();
+// 		this->_stack->push(new Operand<t_int8>(Int8, 23));
+// 		this->_stack->push(new Operand<t_int8>(Int8, 0));
 
 		std::cout << "-------------------" << std::endl;//_DEBUG_//
-		this->_stack->mul();
+
+		try
+		{
+// 			this->_stack->div();
+			this->_stack->mod();
+		}
+		catch (DivExcep &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		catch (ModExcep &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 		this->_stack->dump();
 
 // 		this->_stack->dump();
