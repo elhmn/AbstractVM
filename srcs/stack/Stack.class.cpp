@@ -34,7 +34,7 @@ void		Stack::assert(IOperand const *o) const
 	IOperand const *tmp;
 	Operand<t_double> const *o1;
 	Operand<t_double> const *o2;
-	
+
 	o1 = NULL;
 	o2 = NULL;
 	tmp = NULL;
@@ -88,7 +88,7 @@ void		Stack::push(IOperand const *o)
 void	Stack::print(void) const
 {
 	IOperand const *o;
-	
+
 	o = NULL;
 	if (!this->_stack)
 	{

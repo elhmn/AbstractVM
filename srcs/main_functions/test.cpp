@@ -11,20 +11,20 @@
 // 	Type(void);
 // 	Type(U val);
 // 	Type(U val, V len);
-// 
+//
 // 	~Type(void);
-// 	
+//
 // 	U		val;
 // 	V		len;
 // };
-// 
+//
 // template<typename U, typename V>
 // Type<U, V>::Type(void)
 // {
 // 	val = 0;
 // 	len = 0;
 // }
-// 
+//
 // template<typename U, typename V>
 // Type<U, V>::~Type(void)
 // {
@@ -68,7 +68,7 @@ class	Child: public Poly
 
 Child::Child()
 {
-	std::cout << "Child construct" << std::endl; 
+	std::cout << "Child construct" << std::endl;
 }
 
 void	Child::doStuff(void)
@@ -78,14 +78,14 @@ void	Child::doStuff(void)
 
 Child::~Child()
 {
-	std::cout << "Child destruct" << std::endl; 
+	std::cout << "Child destruct" << std::endl;
 }
 
 void		test(void)
 {
 // 	Poly		*p = new Child();
 // 	Child		*c = dynamic_cast<Child*>(p);
-// 
+//
 // 	(void)p;
 // 	(void)c;
 // 	if (!c)
@@ -101,7 +101,7 @@ void		test(void)
 // 	char		int_8;	//8 bit		1 octet
 // 	short 		int_16;	//16 bit	2 octets
 // 	int			int_32;	//32 bit	4 octets
-// 
+//
 // 	(void)int_8;
 // 	(void)int_16;
 // 	(void)int_32;

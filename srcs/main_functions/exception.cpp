@@ -20,7 +20,8 @@ int		main(void)
 {
 	try
 	{
-		test();
+// 		test();
+		fun();
 	}
 	catch (Excep &e)
 	{

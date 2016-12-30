@@ -45,7 +45,7 @@ void	Vm::run(std::string path)
 		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
 		exit(0);
 	}
-// 	Read() from path 
+// 	Read() from path
 //	Lexer()
 //	Parse()
 //	Exec()
@@ -70,14 +70,14 @@ void	Vm::run(void)
 		this->_stack->push(new Operand<t_float>(Float, 2.0));
 		this->_stack->push(new Operand<t_int8>(Int8, 23));
 		this->_stack->push(new Operand<t_int8>(Int8, 'j'));
-		this->_stack->print(); //Debug
-		this->_stack->assert(new Operand<t_int8>(Int8, 'j'));
 
+		this->_stack->print(); //Debug
+
+		this->_stack->assert(new Operand<t_int8>(Int8, 'j'));
 		std::cout << "-------------------" << std::endl;//_DEBUG_//
 
 		try
 		{
-// 			this->_stack->div();
 			this->_stack->mod();
 		}
 		catch (DivExcep &e)
@@ -89,28 +89,6 @@ void	Vm::run(void)
 			std::cout << e.what() << std::endl;
 		}
 		this->_stack->dump();
-
-// 		this->_stack->dump();
-// 		std::cout << "-------------------" << std::endl;
-// 		this->_stack->pop();
-// 		this->_stack->dump();
-// 		std::cout << "-------------------" << std::endl;
-// 		this->_stack->pop();
-// 		this->_stack->dump();
-// 		std::cout << "-------------------" << std::endl;
-// 		this->_stack->pop();
-// 		this->_stack->dump();
-// 		std::cout << "-------------------" << std::endl;
-// 		this->_stack->pop();
-// 		this->_stack->dump();
-// 		std::cout << "-------------------" << std::endl;
-// 		this->_stack->pop();
-// 		this->_stack->dump();
-
-// 		std::cout << "-------------------" << std::endl;
-// 		this->_stack->pop();
-// 		this->_stack->dump();
-
 //_DEBUG_//
 
 // 		Read() from stdin
@@ -127,5 +105,6 @@ void	Vm::run(void)
 //actions
 void	Vm::vm_exit(void)
 {
+	//the program should quit properly
 	exit(0);
 }

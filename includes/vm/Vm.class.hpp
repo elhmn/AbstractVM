@@ -3,7 +3,7 @@
 
 # include "Stack.class.hpp"
 
-//c'est quoi encore la forme canonique
+//c'est quoi encore la forme canonique ?
 //- constructor par defaut
 //- overload de l'operateur =
 //- constructor par copy

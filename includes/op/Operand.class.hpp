@@ -36,7 +36,7 @@ class		 Operand: public IOperand
 //IOperand interface
 
 // getters
-	virtual int getPrecision( void ) const; // Precision of the type of the instance
+	virtual int getPrecision(void) const; // Precision of the type of the instance
 	virtual eOperandType getType(void) const; // Type of the instance
 
 // operator overload
@@ -367,7 +367,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw DivExcep();
+				throw ModExcep();
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -378,7 +378,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw DivExcep();
+				throw ModExcep();
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -389,7 +389,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw DivExcep();
+				throw ModExcep();
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -400,7 +400,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw DivExcep();
+				throw ModExcep();
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
  			return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
@@ -411,7 +411,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw DivExcep();
+				throw ModExcep();
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
 		 	return (static_cast<IOperand const *>(new Operand(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
