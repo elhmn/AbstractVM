@@ -23,6 +23,10 @@
 **	Don't forget :
 **		-Handle every error types with exceptions
 **		-Build a Factory class to create Operands
+**
+**
+**	ALSO Implement underflow and overflow exceptions
+**		-Replace some Errors with exceptions
 */
 
 int		main(int ac, char **av)

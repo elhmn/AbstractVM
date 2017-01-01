@@ -62,35 +62,18 @@ void	Vm::run(void)
 			std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
 			exit(0);
 		}
-//_DEBUG_//
-		this->_stack->push(new Operand<t_int8>(Int8, 1));
-		this->_stack->push(new Operand<t_int16>(Int16, 2));
-		this->_stack->push(new Operand<t_int32>(Int32, 3));
-		this->_stack->push(new Operand<t_double>(Double, 32.0));
-		this->_stack->push(new Operand<t_float>(Float, 2.0));
 		this->_stack->push(new Operand<t_int8>(Int8, 23));
-		this->_stack->push(new Operand<t_int8>(Int8, 'j'));
-
-		this->_stack->print(); //Debug
-
-		this->_stack->assert(new Operand<t_int8>(Int8, 'j'));
-		std::cout << "-------------------" << std::endl;//_DEBUG_//
-
+		this->_stack->push(new Operand<t_int8>(Int8, 0));
 		try
 		{
-			this->_stack->mod();
+			this->_stack->div();
 		}
 		catch (DivExcep &e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << "Error :: " << e.what() << std::endl;
 		}
-		catch (ModExcep &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
+		std::cout << "dumped :: " << std::endl;
 		this->_stack->dump();
-//_DEBUG_//
-
 // 		Read() from stdin
 //		Lexer()
 //		Parse()
