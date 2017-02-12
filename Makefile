@@ -17,22 +17,25 @@ VM_DIR = vm/
 OP_DIR = op/
 STACK_DIR = stack/
 EXCEP_DIR = exceptions/
+FACT_DIR = factory/
 
 MAIN = main.cpp test.cpp
 VM = Vm.class.cpp
 OP = Operand.class.cpp
 STACK = Stack.class.cpp
 EXCEP = DivExcep.class.cpp ModExcep.class.cpp WrongTypeExcep.class.cpp
+FACT = Factory.class.cpp
 
 MAINS =  $(addprefix $(MAIN_DIR), $(MAIN))
 VMS =  $(addprefix $(VM_DIR), $(VM))
 OPS =  $(addprefix $(OP_DIR), $(OP))
 STACKS =  $(addprefix $(STACK_DIR), $(STACK))
 EXCEPS =  $(addprefix $(EXCEP_DIR), $(EXCEP))
+FACTS =  $(addprefix $(FACT_DIR), $(FACT))
 
-SRC_OBJ = $(MAIN) $(VM) $(OP) $(STACK) $(EXCEP)
+SRC_OBJ = $(MAIN) $(VM) $(OP) $(STACK) $(EXCEP) $(FACT)
 
-SRC = 	$(MAINS) $(VMS) $(OPS) $(STACKS) $(EXCEPS)
+SRC = 	$(MAINS) $(VMS) $(OPS) $(STACKS) $(EXCEPS) $(FACTS)
 
 OBJ = $(SRC_OBJ:.cpp=.o)
 
@@ -55,6 +58,7 @@ INCLUDES =	-I ./includes/ \
 			-I $(addprefix $(INC_PATH), $(OP_DIR)) \
 			-I $(addprefix $(INC_PATH), $(STACK_DIR)) \
 			-I $(addprefix $(INC_PATH), $(EXCEP_DIR)) \
+			-I $(addprefix $(INC_PATH), $(FACT_DIR))
 
 LIB =
 

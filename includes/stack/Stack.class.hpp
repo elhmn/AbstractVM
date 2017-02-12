@@ -28,9 +28,9 @@ class	Stack
 	std::stack<IOperand const*>	*getStack(void) const;
 
 //actions
-	void	assert(IOperand const *o) const;// implementation incomplete
+	void	assert(IOperand const *o) const;// implementation incomplete (lasts exceptions)
 	void	push(IOperand const *o);
-	void	print(void) const;// implemention incomplete
+	void	print(void) const;// implemention incomplete (lasts exceptions)
 	void	dump(void) const;
 	void	pop(void);
 	void	add(void);

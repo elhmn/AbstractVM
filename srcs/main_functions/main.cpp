@@ -21,7 +21,7 @@
 **	- EXEC
 **	- OTHER stuff requiered to run the program
 **	Don't forget :
-**		-Handle every error types with exceptions
+**		-Handle every error type with exceptions
 **		-Build a Factory class to create Operands
 **
 **
@@ -31,7 +31,7 @@
 
 int		main(int ac, char **av)
 {
-	Vm * vm = NULL;
+	Vm	*vm = NULL;
 	
 	if (!(vm = Vm::getInstance()))
 	{
