@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Vm.class.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/11 16:35:35 by bmbarga           #+#    #+#             */
+/*   Updated: 2017/09/11 21:31:59 by bmbarga          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VM_CLASS_HPP
 # define VM_CLASS_HPP
 
@@ -16,6 +28,7 @@ class	Vm
 //attributs
 	static Vm			*_firstInstance;
 	Stack				*_stack;
+	bool				_running;
 
 //constructors
 	Vm(void);
@@ -36,6 +49,9 @@ class	Vm
 
 //actions
  	static void			vm_exit(void);
+	bool				stopped(void);
+	void				start(void);
+	void				stop(void);
 
 //run
 	void				run(void);

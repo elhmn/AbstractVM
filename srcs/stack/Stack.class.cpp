@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:10 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 17:37:11 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/11 21:22:41 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void		Stack::push(IOperand const *o)
 	this->_stack->push(o);
 }
 
+//assert that the value at the top of the stack is an 8-bit integer
+//then display the corresponding ascii character to the output
 void	Stack::print(void) const
 {
 	IOperand const *o;
@@ -115,8 +117,6 @@ void	Stack::print(void) const
 		exit(0);//_DEBUG_//
 	}
 	std::cout << castInt8((void*)o)->getValue() << std::endl;
-	//assert that the value at the top of the stack is an 8-bit integer
-	//then display the corresponding ascii character to the output
 }
 
 void	Stack::dump(void) const

@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 20:49:06 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/11 21:36:04 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	Vm::verbose = false;
 Vm		*Vm::_firstInstance = NULL;
 
 //constructors
-Vm::Vm(void):_stack(NULL)
+Vm::Vm(void):_stack(NULL), _running(false)
 {
 	if (Vm::verbose)
 		std::cout << "Vm constructor called" << std::endl;
@@ -68,8 +68,9 @@ void	Vm::run(std::string path)
 
 void	Vm::run(void)
 {
-// 	while (42) //condition de reprise
-// 	{
+	this->start();
+ 	while (!this->stopped()) //condition de reprise
+ 	{
 		if (!(this->_stack = new Stack()))
 		{
 			std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
@@ -103,7 +104,8 @@ void	Vm::run(void)
 // 		delete stack ()
 // 		set stack to NULL
  		std::cout << "vm run" << std::endl;
-// 	}
+		this->stop();
+ 	}
 }
 
 //actions
@@ -111,4 +113,24 @@ void	Vm::vm_exit(void)
 {
 	//the program should quit properly
 	exit(0);
+}
+
+//check whether the vm is stopped or not
+bool	Vm::stopped(void)
+{
+	return (!this->_running);
+}
+
+//start the vm
+void	Vm::start(void)
+{
+	if (!this->_running)
+		this->_running = true;
+}
+
+//stop the vm
+void	Vm::stop(void)
+{
+	if (this->_running)
+		this->_running = false;
 }
