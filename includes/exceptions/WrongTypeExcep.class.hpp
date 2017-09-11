@@ -11,13 +11,13 @@ class	WrongTypeExcep : public std::exception
 	WrongTypeExcep(WrongTypeExcep const &rhs);
 
 //destructor
-	~WrongTypeExcep(void);
+	virtual ~WrongTypeExcep(void) throw();
 
 //operator overload
 	WrongTypeExcep &operator=(WrongTypeExcep &rhs);
 
 //functions
-	virtual const char *what(void) throw();
+// 	virtual const char *what(void) throw();
 };
 
 #endif

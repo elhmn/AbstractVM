@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Stack.class.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/11 16:35:10 by bmbarga           #+#    #+#             */
+/*   Updated: 2017/09/11 17:37:11 by bmbarga          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Stack.class.hpp"
 #include "Operand.class.hpp"
 #include <iostream>
@@ -31,9 +43,9 @@ std::stack<IOperand const *> *Stack::getStack(void) const
 //actions
 void		Stack::assert(IOperand const *o) const
 {
-	IOperand const *tmp;
-	Operand<t_double> const *o1;
-	Operand<t_double> const *o2;
+	IOperand const			*tmp;
+	Operand<t_double> const	*o1;
+	Operand<t_double> const	*o2;
 
 	o1 = NULL;
 	o2 = NULL;
@@ -150,8 +162,8 @@ void	Stack::pop(void)
 
 void	Stack::add(void)
 {
-	IOperand const *a;
-	IOperand const *b;
+	IOperand const	*a;
+	IOperand const	*b;
 
 	a = NULL;
 	b = NULL;

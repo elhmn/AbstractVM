@@ -35,7 +35,7 @@ class	Vm
 	static Vm			*getInstance(void);
 
 //actions
- 	static void				vm_exit(void);
+ 	static void			vm_exit(void);
 
 //run
 	void				run(void);

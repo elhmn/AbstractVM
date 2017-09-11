@@ -11,13 +11,13 @@ class	ModExcep : public std::exception
 	ModExcep(ModExcep const &rhs);
 
 //destructor
-	~ModExcep(void);
+	virtual ~ModExcep(void) throw();
 
 //operator overload
 	ModExcep &operator=(ModExcep &rhs);	
 
 //functions
-	virtual const char *what(void) throw();
+// 	virtual const char *what(void) throw();
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 16:52:42 by bmbarga           #+#    #+#             */
-/*   Updated: 2016/10/23 13:49:52 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/11 17:58:07 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	- LEXER
 **	- PARSER
 **	- EXEC
-**	- OTHER stuff requiered to run the program
+**	- OTHER stuff required to run the program
 **	Don't forget :
 **		-Handle every error type with exceptions
 **		-Build a Factory class to create Operands

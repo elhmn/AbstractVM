@@ -13,13 +13,13 @@ class	DivExcep : public std::exception
 	DivExcep(DivExcep const &rhs);
 
 //destructor
-	~DivExcep(void);
+	virtual ~DivExcep(void) throw();
 
 //operator overload
 	DivExcep &operator=(DivExcep &rhs);	
 
 //functions
-	virtual const char *what(void) throw();
+// 	virtual const char *what(void) throw();
 };
 
 #endif

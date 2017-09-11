@@ -7,7 +7,7 @@ typedef int			t_int32;
 typedef float		t_float;
 typedef double		t_double;
 
-enum	eOperandType
+enum				eOperandType
 {
 	Int8,
 	Int16,

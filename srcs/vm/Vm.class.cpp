@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Vm.class.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
+/*   Updated: 2017/09/11 20:49:06 by bmbarga          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Vm.class.hpp"
 #include "Operand.class.hpp"
 #include "Factory.class.hpp"
@@ -78,18 +90,18 @@ void	Vm::run(void)
 		this->_stack->push(Factory::getInstance()->createOperand(Int8, "-1"));
 		this->_stack->push(Factory::getInstance()->createOperand(Int16, "-2"));
 		this->_stack->push(Factory::getInstance()->createOperand(Int32, "-3"));
-		this->_stack->push(Factory::getInstance()->createOperand(Float, "-4"));
+		this->_stack->push(Factory::getInstance()->createOperand(Float, "-4.8787"));
 		this->_stack->push(Factory::getInstance()->createOperand(Double, "5"));
 		this->_stack->dump();
 
 // 		this->_stack->print();
 // 		Read() from stdin
-//		Lexer()
-//		Parse()
-//		Exec()
-//		clear stack ()
-//		delete stack ()
-//		set stack to NULL
+// 		Lexer()
+// 		Parse()
+// 		Exec()
+// 		clear stack ()
+// 		delete stack ()
+// 		set stack to NULL
  		std::cout << "vm run" << std::endl;
 // 	}
 }

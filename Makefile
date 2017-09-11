@@ -6,7 +6,7 @@
 #    By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/22 16:40:12 by bmbarga           #+#    #+#              #
-#    Updated: 2016/10/22 17:16:52 by bmbarga          ###   ########.fr        #
+#    Updated: 2017/09/11 19:39:24 by bmbarga          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,22 +26,22 @@ STACK = Stack.class.cpp
 EXCEP = DivExcep.class.cpp ModExcep.class.cpp WrongTypeExcep.class.cpp
 FACT = Factory.class.cpp
 
-MAINS =  $(addprefix $(MAIN_DIR), $(MAIN))
-VMS =  $(addprefix $(VM_DIR), $(VM))
-OPS =  $(addprefix $(OP_DIR), $(OP))
-STACKS =  $(addprefix $(STACK_DIR), $(STACK))
-EXCEPS =  $(addprefix $(EXCEP_DIR), $(EXCEP))
-FACTS =  $(addprefix $(FACT_DIR), $(FACT))
+MAINS = $(addprefix $(MAIN_DIR), $(MAIN))
+VMS = $(addprefix $(VM_DIR), $(VM))
+OPS = $(addprefix $(OP_DIR), $(OP))
+STACKS = $(addprefix $(STACK_DIR), $(STACK))
+EXCEPS = $(addprefix $(EXCEP_DIR), $(EXCEP))
+FACTS = $(addprefix $(FACT_DIR), $(FACT))
 
 SRC_OBJ = $(MAIN) $(VM) $(OP) $(STACK) $(EXCEP) $(FACT)
 
-SRC = 	$(MAINS) $(VMS) $(OPS) $(STACKS) $(EXCEPS) $(FACTS)
+SRC = $(MAINS) $(VMS) $(OPS) $(STACKS) $(EXCEPS) $(FACTS)
 
 OBJ = $(SRC_OBJ:.cpp=.o)
 
 OBJDIR = ./objs/
 
-REPS =  $(addprefix $(OBJ_DIR), $(REP))
+REPS = $(addprefix $(OBJ_DIR), $(REP))
 
 SRCDIR = ./srcs/
 
