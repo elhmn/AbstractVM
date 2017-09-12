@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:04:12 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 21:26:15 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/12 13:27:26 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ class	Stack
 	std::stack<IOperand const*>		*_stack;
 
 	public:
-//attributs
-	static bool					verbose;
+//attributes
+	static bool						verbose;
 
 //constructors
 	Stack(void);

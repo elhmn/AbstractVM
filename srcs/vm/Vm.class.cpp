@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 21:36:04 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/12 17:06:33 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "Factory.class.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <lexer.hpp>
 
 bool	Vm::verbose = false;
 Vm		*Vm::_firstInstance = NULL;
@@ -53,16 +54,19 @@ Vm		*Vm::getInstance(void)
 void	Vm::run(std::string path)
 {
 	(void)path;
+	this->start();
 	if (!(this->_stack = new Stack()))
 	{
 		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
 		exit(0);
 	}
+	lexer(path);
 // 	Read() from path
 //	Lexer()
 //	Parse()
 //	Exec()
 //	clear stack ()
+	this->stop();
 	std::cout << "vm run from file" << std::endl;
 }
 
@@ -87,7 +91,6 @@ void	Vm::run(void)
 // 			std::cout << "Error :: " << e.what() << std::endl;
 // 		}
 // 		std::cout << "dumped :: " << std::endl;
-
 		this->_stack->push(Factory::getInstance()->createOperand(Int8, "-1"));
 		this->_stack->push(Factory::getInstance()->createOperand(Int16, "-2"));
 		this->_stack->push(Factory::getInstance()->createOperand(Int32, "-3"));

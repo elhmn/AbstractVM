@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 21:31:59 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/11 21:44:50 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class	Vm
 {
 	private :
 
-//attributs
+//attributes
 	static Vm			*_firstInstance;
 	Stack				*_stack;
 	bool				_running;

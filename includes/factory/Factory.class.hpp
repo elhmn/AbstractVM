@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Factory.class.hpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/11 21:45:33 by bmbarga           #+#    #+#             */
+/*   Updated: 2017/09/11 21:45:39 by bmbarga          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FACTORY_CLASS_HPP
 # define FACTORY_CLASS_HPP
 
@@ -12,7 +24,7 @@ class	Factory
 //typedef
 	typedef IOperand const	*(Factory::*t_f)(std::string const &) const;
 
-//attributs
+//attributes
 	private:
 	static Factory		*_firstInstance;
 	std::vector<t_f>	_f_tab;
