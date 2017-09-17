@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 16:52:42 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 21:39:42 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/17 16:03:36 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 int		main(int ac, char **av)
 {
 	Vm	*vm = NULL;
-	
+
 	if (!(vm = Vm::getInstance()))
 	{
 		std::cout << "vm instantiation error" << std::endl;

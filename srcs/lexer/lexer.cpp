@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:45:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/12 17:29:40 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/17 17:33:58 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,30 @@
 #include <lexer.hpp>
 #include <list>
 #include <vector>
+#include <regex>
 
 static void				get_token(t_tok_tab *toks,
 						std::string line)
 {
-	(void)toks;
-	(void)line;
+// 	I am just testing
+	std::regex			pattern(";;");
+	std::smatch			match;
+	std::string			tmp;
+
+// 	std::list<t_tok>	tks = new std::list<t_tok>();
 
 	if (!toks)
 		ERROR("toks");
-	std::cout << line << std::endl;
+// 	if (!tks)
+// 		ERROR("tks");
+	tmp = line;
+	while (std::regex_search(tmp, match, pattern))
+	{
+		std::cout << "MATCH : " << match.str() << std::endl;
+		tmp = match.suffix().str();
+	}
+// 	toks.add(tks);
+// 	std::cout << line << std::endl;
 }
 
 t_tok_tab				*lexer(std::string filepath)
@@ -35,7 +49,7 @@ t_tok_tab				*lexer(std::string filepath)
 	t_tok_tab			*toks;
 
 	toks = NULL;
-	std::cout << "i lex file" << std::endl;//_DEBUG_//
+	std::cout << "I lex file" << std::endl;//_DEBUG_//
 	file.exceptions(std::ifstream::badbit);
 	try
 	{
@@ -50,6 +64,10 @@ t_tok_tab				*lexer(std::string filepath)
 // 				lexe file
 			}
 			file.close();
+// You must not delete toks before this function return
+// Implement an elaborate delete toks function that will be used instead of
+// the basic delete(toks) function call
+			delete(toks);
 		}
 	}
 	catch (const std::ifstream::failure& e)
