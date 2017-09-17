@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 21:45:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 21:45:39 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/17 18:23:30 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "IOperand.class.hpp"
 #include <string>
 #include <vector>
-
 
 class	Factory
 {
