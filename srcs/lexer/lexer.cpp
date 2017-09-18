@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:45:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/18 20:10:36 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/18 20:49:33 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 #include <list>
 #include <vector>
 #include <regex>
+
+static t_tok			*new_tok(std::string val, e_tok type)
+{
+	t_tok		*tok;
+
+	if (!(tok = new t_tok()))
+		ERROR("tok");
+	tok->type = type;
+	tok->val = val;
+	return (tok);
+}
 
 static int				get_token(t_tok_tab *toks,
 						std::string line)
@@ -42,14 +53,7 @@ static int				get_token(t_tok_tab *toks,
 		ERROR("tok_l");
 	if (std::regex_match(line, match, p_line, std::regex_constants::match_default))
 	{
-// 		match[1] instruction
-		if (!(tok = new t_tok()))
-			ERROR("tok");
-		tok->type = INSTR;
-		tok->val = match[1].str();
-		tok_l->push_back(tok);
-// 		put_tok(*tok);//_DEBUG_//
-// 		std::cout << "" << std::endl;//_DEBUG_//
+		tok_l->push_back(new_tok(match[1].str(), INSTR));
 	}
 	else if (std::regex_match(line, match, p_line_val, std::regex_constants::match_default))
 	{
