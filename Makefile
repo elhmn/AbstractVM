@@ -6,7 +6,7 @@
 #    By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/22 16:40:12 by bmbarga           #+#    #+#              #
-#    Updated: 2017/09/12 16:18:48 by bmbarga          ###   ########.fr        #
+#    Updated: 2017/09/18 17:59:42 by bmbarga          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ STACK = Stack.class.cpp
 EXCEP = DivExcep.class.cpp ModExcep.class.cpp WrongTypeExcep.class.cpp
 FACT = Factory.class.cpp
 ERROR = error.cpp
-LEXER = lexer.cpp
+LEXER = lexer.cpp token.cpp
 
 MAINS = $(addprefix $(MAIN_DIR), $(MAIN))
 VMS = $(addprefix $(VM_DIR), $(VM))

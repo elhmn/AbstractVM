@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:19:36 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/17 21:27:11 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/18 18:04:57 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <vector>
 # include <list>
+# include "token.hpp"
 
 /*
 ** Useful strings
@@ -102,6 +103,7 @@
 							RGX_PEND
 
 # define RGX_INSTR			RGX_PSTART \
+								K_POP RGX_OR \
 								K_DUMP RGX_OR \
 								K_ADD RGX_OR \
 								K_SUB RGX_OR \
@@ -145,25 +147,6 @@
 								RGX_PEND \
 							RGX_END
 
-enum			e_tok
-{
-	UNKNOWN,
-	INSTR,
-	VALTYPE,
-	VALUE,
-	COMMENT,
-	INTERGER,
-	FLOATING,
-	END
-};
-
-typedef struct	s_tok
-{
-	e_tok		type;
-	char		*val;
-}				t_tok;
-
-typedef std::vector< std::list<t_tok> >		t_tok_tab;
 
 /*
 ** lexer/lexer.cpp

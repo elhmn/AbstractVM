@@ -1,2 +1,12 @@
 Bonjour monsieur ;je suis con;;;;
-assert int8 ( 010          )        ;;;; je suis con
+yolo exec ;;;;;
+;;;
+hey
+pop;;;hey
+
+
+assert int8 (010)        ;;;; je suis con
+push int32(          42        )
+push int32(33)
+push double(42.42)
+push float (         44.44     )

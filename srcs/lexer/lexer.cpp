@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:45:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/17 19:57:29 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/18 18:46:30 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,51 @@
 static int				get_token(t_tok_tab *toks,
 						std::string line)
 {
-// 	I am just testing
-	std::regex			p_comment(RGX_COMMENT);
-	std::regex			p_line(RGX_LINE_VAL);
-// 	std::regex			p_line_val(RGX_LINE_VAL);
+	std::regex			p_empty(RGX_START RGX_END);
+	std::regex			p_line(RGX_LINE);
+	std::regex			p_line_val(RGX_LINE_VAL);
 	std::smatch			match;
-	std::string			tmp;
+	std::list<t_tok>	tks;
+	t_tok				*tok;
 
-// 	std::list<t_tok>	tks = new std::list<t_tok>();
-
+	tok = NULL;
 	if (!toks)
 		ERROR("toks");
 // 	if (!tks)
 // 		ERROR("tks");
+// 		for (int i = 0; i < (int)match.size(); i++)
+// 			std::cout << "MATCH[" << i << "] : [" << match[i].str() << "]" << std::endl;//_DEBUG_//
 	if (line == RGX_ENDINSTR)
 	{
 		std::cout << "end of script" << std::endl;//_DEBUG_//
 		return (-1);
 	}
-	tmp = line;
-// 	std::cout << "LINE : [" << tmp << "]" << std::endl;//_DEBUG_//
-// 	std::cout << "REGEX COMMENT: #" << RGX_COMMENT << "#" << std::endl;//_DEBUG_//
-	if (std::regex_match(tmp, match, p_comment, std::regex_constants::match_default))
+	if (std::regex_match(line, match, p_line, std::regex_constants::match_default))
 	{
-		for (int i = 0; i < (int)match.size(); i++)
-			std::cout << "MATCH[" << i<< "] : [" << match[i].str() << "]" << std::endl;//_DEBUG_//
-		tmp = match.suffix().str();
+		std::cout << "MATCH[" << 1 << "] : [" << match[1].str() << "]" << std::endl;//_DEBUG_//
+// 		match[1] instruction
 	}
-	tmp = line;
-	std::cout << "LINE : [" << tmp << "]" << std::endl;//_DEBUG_//
-	std::cout << "REGEX LINE: #" << RGX_LINE_VAL << "#" << std::endl;//_DEBUG_//
-	if (std::regex_match(tmp, match, p_line, std::regex_constants::match_default))
+	else if (std::regex_match(line, match, p_line_val, std::regex_constants::match_default))
 	{
-		for (int i = 0; i < (int)match.size(); i++)
-			std::cout << "MATCH[" << i<< "] : [" << match[i].str() << "]" << std::endl;//_DEBUG_//
-		tmp = match.suffix().str();
+		std::cout << "MATCH[" << 1 << "] : [" << match[1].str() << "]" << std::endl;//_DEBUG_//
+		std::cout << "MATCH[" << 4 << "] : [" << match[4].str() << "]" << std::endl;//_DEBUG_//
+		std::cout << "MATCH[" << 5 << "] : [" << match[5].str() << "]" << std::endl;//_DEBUG_//
+		std::cout << "MATCH[" << 7 << "] : [" << match[7].str() << "]" << std::endl;//_DEBUG_//
+		std::cout << "MATCH[" << 8 << "] : [" << match[8].str() << "]" << std::endl;//_DEBUG_//
+// 		need line , value type, and type
+// 		types are stored in match[4] for integers and match[7] for floating points (double && float)
+// 		values are stored in match[5] for integers and match[8] for floating points (double && float)
+	}
+	else if (std::regex_match(line, match, p_empty, std::regex_constants::match_default))
+	{
+ 		std::cout << "empty or commented line : " << std::endl;//_DEBUG_//
+		std::cout << "LINE : [" << line << "]" << std::endl;//_DEBUG_//
+	}
+	else
+	{
+		std::cout << "UNKNOWN line :: ##############################" << std::endl;//_DEBUG_//
+		std::cout << "LINE : [" << line << "]" << std::endl;//_DEBUG_//
+		std::cout << "UNKNOWN line END :: ##############################" << std::endl;//_DEBUG_//
 	}
 // 	toks.add(tks);
 // 	std::cout << line << std::endl;
