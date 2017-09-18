@@ -6,15 +6,13 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:19:36 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/18 18:04:57 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/18 21:10:51 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_HPP
 # define LEXER_HPP
 
-# include <vector>
-# include <list>
 # include "token.hpp"
 
 /*
@@ -146,7 +144,6 @@
 									RGX_PEND \
 								RGX_PEND \
 							RGX_END
-
 
 /*
 ** lexer/lexer.cpp

@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:45:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/18 20:49:33 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/18 21:36:08 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,46 +42,35 @@ static int				get_token(t_tok_tab *toks,
 	tok = NULL;
 	if (!toks)
 		ERROR("toks");
-// 		for (int i = 0; i < (int)match.size(); i++)
-// 			std::cout << "MATCH[" << i << "] : [" << match[i].str() << "]" << std::endl;//_DEBUG_//
 	if (line == RGX_ENDINSTR)
-	{
-		std::cout << "end of script" << std::endl;//_DEBUG_//
 		return (-1);
-	}
+	if (std::regex_match(line, match, p_empty, std::regex_constants::match_default))
+		return (0);
 	if (!(tok_l = new std::list<t_tok*>()))
 		ERROR("tok_l");
 	if (std::regex_match(line, match, p_line, std::regex_constants::match_default))
-	{
 		tok_l->push_back(new_tok(match[1].str(), INSTR));
-	}
 	else if (std::regex_match(line, match, p_line_val, std::regex_constants::match_default))
 	{
-		std::cout << "MATCH[" << 1 << "] : [" << match[1].str() << "]" << std::endl;//_DEBUG_//
-		std::cout << "MATCH[" << 4 << "] : [" << match[4].str() << "]" << std::endl;//_DEBUG_//
-		std::cout << "MATCH[" << 5 << "] : [" << match[5].str() << "]" << std::endl;//_DEBUG_//
-		std::cout << "MATCH[" << 7 << "] : [" << match[7].str() << "]" << std::endl;//_DEBUG_//
-		std::cout << "MATCH[" << 8 << "] : [" << match[8].str() << "]" << std::endl;//_DEBUG_//
-// 		need line , value type, and type
-// 		types are stored in match[4] for integers and match[7] for floating points (double && float)
-// 		values are stored in match[5] for integers and match[8] for floating points (double && float)
-	}
-	else if (std::regex_match(line, match, p_empty, std::regex_constants::match_default))
-	{
- 		std::cout << "empty or commented line : " << std::endl;//_DEBUG_//
-		std::cout << "LINE : [" << line << "]" << std::endl;//_DEBUG_//
+		tok_l->push_back(new_tok(match[1].str(), INSTR));
+		if (!match[4].str().empty())
+		{
+			tok_l->push_back(new_tok(match[4].str(), VALTYPE));
+			tok_l->push_back(new_tok(match[5].str(), VALUE));
+		}
+		else
+		{
+			tok_l->push_back(new_tok(match[7].str(), VALTYPE));
+			tok_l->push_back(new_tok(match[8].str(), VALUE));
+		}
 	}
 	else
 	{
 // 		Show error unknown line
-		std::cout << "UNKNOWN line :: ##############################" << std::endl;//_DEBUG_//
-		std::cout << "LINE : [" << line << "]" << std::endl;//_DEBUG_//
-		std::cout << "UNKNOWN line END :: ##############################" << std::endl;//_DEBUG_//
+		delete (tok_l);
+		return (0);
 	}
 	toks->push_back(tok_l);
-// 	put_tok_list(*tok_l);
-// 	toks.add(tks);
-// 	std::cout << line << std::endl;
 	return (0);
 }
 
