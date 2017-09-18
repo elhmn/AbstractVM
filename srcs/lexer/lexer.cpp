@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:45:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/18 18:46:30 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/18 20:10:36 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ static int				get_token(t_tok_tab *toks,
 	std::regex			p_line(RGX_LINE);
 	std::regex			p_line_val(RGX_LINE_VAL);
 	std::smatch			match;
-	std::list<t_tok>	tks;
+	std::list<t_tok*>	*tok_l;
 	t_tok				*tok;
 
 	tok = NULL;
 	if (!toks)
 		ERROR("toks");
-// 	if (!tks)
-// 		ERROR("tks");
 // 		for (int i = 0; i < (int)match.size(); i++)
 // 			std::cout << "MATCH[" << i << "] : [" << match[i].str() << "]" << std::endl;//_DEBUG_//
 	if (line == RGX_ENDINSTR)
@@ -40,10 +38,18 @@ static int				get_token(t_tok_tab *toks,
 		std::cout << "end of script" << std::endl;//_DEBUG_//
 		return (-1);
 	}
+	if (!(tok_l = new std::list<t_tok*>()))
+		ERROR("tok_l");
 	if (std::regex_match(line, match, p_line, std::regex_constants::match_default))
 	{
-		std::cout << "MATCH[" << 1 << "] : [" << match[1].str() << "]" << std::endl;//_DEBUG_//
 // 		match[1] instruction
+		if (!(tok = new t_tok()))
+			ERROR("tok");
+		tok->type = INSTR;
+		tok->val = match[1].str();
+		tok_l->push_back(tok);
+// 		put_tok(*tok);//_DEBUG_//
+// 		std::cout << "" << std::endl;//_DEBUG_//
 	}
 	else if (std::regex_match(line, match, p_line_val, std::regex_constants::match_default))
 	{
@@ -63,10 +69,13 @@ static int				get_token(t_tok_tab *toks,
 	}
 	else
 	{
+// 		Show error unknown line
 		std::cout << "UNKNOWN line :: ##############################" << std::endl;//_DEBUG_//
 		std::cout << "LINE : [" << line << "]" << std::endl;//_DEBUG_//
 		std::cout << "UNKNOWN line END :: ##############################" << std::endl;//_DEBUG_//
 	}
+	toks->push_back(tok_l);
+// 	put_tok_list(*tok_l);
 // 	toks.add(tks);
 // 	std::cout << line << std::endl;
 	return (0);
@@ -86,7 +95,7 @@ t_tok_tab				*lexer(std::string filepath)
 		file.open(filepath);
 		if (file.is_open())
 		{
-			if (!(toks = new std::vector< std::list<t_tok> >()))
+			if (!(toks = new std::vector< std::list<t_tok*>* >()))
 				ERROR("toks");
 			while (std::getline(file, line))
 			{
@@ -94,6 +103,7 @@ t_tok_tab				*lexer(std::string filepath)
 					return (toks);
 // 				lexe file
 			}
+			put_tok_tab(*toks);
 			file.close();
 // You must not delete toks before this function return
 // Implement an elaborate delete toks function that will be used instead of

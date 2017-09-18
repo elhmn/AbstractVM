@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:26:41 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/18 18:19:10 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/18 19:57:42 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ enum				e_tok
 	INSTR,
 	VALTYPE,
 	VALUE,
-	COMMENT,
-	INTERGER,
-	FLOATING,
 	END
 };
 
@@ -35,14 +32,15 @@ typedef struct		s_tok
 	std::string		val;
 }					t_tok;
 
-typedef std::vector< std::list<t_tok> >		t_tok_tab;
+typedef std::vector< std::list<t_tok*>* >		t_tok_tab;
 
 /*
 ** token.cpp
 */
 
 void			put_tok(t_tok t);
-void			put_tok_list(std::list<t_tok> l);
+void			put_tok_list(std::list<t_tok*> l);
 void			put_tok_tab(t_tok_tab tab);
+std::string		conv_tok_type(int type);
 
 #endif
