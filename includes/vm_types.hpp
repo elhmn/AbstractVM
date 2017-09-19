@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 21:45:29 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/12 13:39:46 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 20:12:41 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ enum				eOperandType
 	Int16,
 	Int32,
 	Float,
-	Double
+	Double,
 };
 
 #endif

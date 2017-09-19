@@ -1,0 +1,14 @@
+
+push double (10.2)
+push int32 (10)
+add
+dump
+assert double (20.2)
+
+push int32 (10)
+push double (10.2)
+add
+dump
+assert double (20.2)
+
+exit

@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:17 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/11 21:45:42 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 23:45:38 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,35 @@ Factory *Factory::getInstance(void)
 //factory operand creator method
 IOperand const	*Factory::createInt8(std::string const &value) const
 {
-// 	std::cout << "Create Int8" << value << std::endl;
+	std::cout << "Create Int8 : " << value << std::endl;
 	return (new Operand<t_int8>(Int8,
-		static_cast<t_int8>(std::stoi(value))));
+		static_cast<t_int8>(std::stod(value))));
 }
 
 IOperand const	*Factory::createInt16(std::string const &value) const
 {
-// 	std::cout << "Create Int16" << value << std::endl;
+	std::cout << "Create Int16 : " << value << std::endl;
 	return (new Operand<t_int16>(Int16,
 			static_cast<t_int16>(std::stod(value))));
 }
 
 IOperand const	*Factory::createInt32(std::string const &value) const
 {
-// 	std::cout << "Create Int32" << value << std::endl;
+	std::cout << "Create Int32 : " << value << std::endl;
 	return (new Operand<t_int32>(Int32,
 			static_cast<t_int32>(std::stod(value))));
 }
 
 IOperand const	*Factory::createFloat(std::string const &value) const
 {
-// 	std::cout << "Create Float" << value << std::endl;
+	std::cout << "Create Float : " << value << std::endl;
 	return (new Operand<t_float>(Float,
 			static_cast<t_float>(std::stod(value))));
 }
 
 IOperand const	*Factory::createDouble(std::string const &value) const
 {
-// 	std::cout << "Create Double" << value << std::endl;
+	std::cout << "Create Double : " << value << std::endl;
 	return (new Operand<t_double>(Double,
 			static_cast<t_double>(std::stod(value))));
 }

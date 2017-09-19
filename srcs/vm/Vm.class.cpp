@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 18:16:36 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 20:15:56 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "lexer.hpp"
 #include "parser.hpp"
 #include "exec.hpp"
+#include <map>
 
 bool	Vm::verbose = false;
 Vm		*Vm::_firstInstance = NULL;
@@ -53,9 +54,14 @@ Vm		*Vm::getInstance(void)
 	return (Vm::_firstInstance);
 }
 
+Stack	*Vm::getStack(void) const
+{
+	return (this->_stack);
+}
+
 void	Vm::run(std::string path)
 {
-	t_tok_tab			*toks;
+	t_tok_tab						*toks;
 
 	toks = NULL;
 	this->start();

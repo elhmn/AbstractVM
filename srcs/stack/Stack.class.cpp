@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:10 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 17:16:18 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 22:34:24 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,7 @@ std::stack<IOperand const *> *Stack::getStack(void) const
 void		Stack::assert(IOperand const *o) const
 {
 	IOperand const			*tmp;
-	Operand<t_double> const	*o1;
-	Operand<t_double> const	*o2;
 
-	o1 = NULL;
-	o2 = NULL;
 	tmp = NULL;
 	if (!o)
 	{
@@ -63,15 +59,13 @@ void		Stack::assert(IOperand const *o) const
 	tmp = this->_stack->top();
 	if (!tmp || tmp->getType() != o->getType())
 	{
-		std::cout << "Do not assert" << std::endl;//_DEBUG_//
+		std::cout << "Do not assert type" << std::endl;//_DEBUG_//
 		exit(0);//_DEBUG_//
 	}
-	o1 = castDouble((void*)tmp);
-	o2 = castDouble((void*)o);
-	if (o1->getValue() != o2->getValue())
+	if (o->toString() != tmp->toString())
 	{
 		//throw expcetion or catch an  assert exception exception
-		std::cout << "Do not assert" << std::endl;//_DEBUG_//
+		std::cout << "Do not assert value" << std::endl;//_DEBUG_//
 		exit(0);//_DEBUG_//
 	}
 	std::cout << "I asserted something" << std::endl;
@@ -116,7 +110,7 @@ void	Stack::print(void) const
 		std::cout << "Can't print" << std::endl;//_DEBUG_//
 		exit(0);//_DEBUG_//
 	}
-	std::cout << castInt8((void*)o)->getValue() << std::endl;
+	std::cout << castInt8(o)->getValue() << std::endl;
 }
 
 void	Stack::dump(void) const
