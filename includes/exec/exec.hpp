@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.cpp                                           :+:      :+:    :+:   */
+/*   exec.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/22 17:47:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 18:19:31 by bmbarga          ###   ########.fr       */
+/*   Created: 2017/09/19 18:15:13 by bmbarga           #+#    #+#             */
+/*   Updated: 2017/09/19 18:15:59 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "exec.hpp"
+#ifndef EXEC_HPP
+# define EXEC_HPP
 
-int                 exec(t_tok_tab **toks)
-{
-	(void)toks;
-	std::cout << "i exec file" << std::endl;
-	return (0);
-}
+# include "lexer.hpp"
+
+int                 exec(t_tok_tab **toks);
+
+#endif

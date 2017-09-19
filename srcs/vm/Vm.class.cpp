@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 18:09:43 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 18:16:36 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "Factory.class.hpp"
 #include "lexer.hpp"
 #include "parser.hpp"
+#include "exec.hpp"
 
 bool	Vm::verbose = false;
 Vm		*Vm::_firstInstance = NULL;
