@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:19:36 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/18 21:38:52 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 17:07:36 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@
 ** lexer/lexer.cpp
 */
 
-t_tok_tab						*lexer(std::string filepath);
+int			lexer(t_tok_tab **toks, std::string filepath);
+int			lexer(t_tok_tab **toks);
+
 
 #endif

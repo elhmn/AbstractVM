@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:45:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/18 21:38:40 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 18:00:53 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,28 @@ static t_tok			*new_tok(std::string val, e_tok type)
 static int				get_token(t_tok_tab *toks,
 						std::string line)
 {
+	std::list<t_tok*>	*tok_l;
+	t_tok				*tok;
 	std::regex			p_empty(RGX_START RGX_END);
 	std::regex			p_line(RGX_LINE);
 	std::regex			p_line_val(RGX_LINE_VAL);
 	std::smatch			match;
-	std::list<t_tok*>	*tok_l;
-	t_tok				*tok;
 
 	tok = NULL;
 	if (!toks)
 		ERROR("toks");
 	if (line == RGX_ENDINSTR)
 		return (-1);
-	if (std::regex_match(line, match, p_empty, std::regex_constants::match_default))
+	if (std::regex_match(line, match, p_empty,
+			std::regex_constants::match_default))
 		return (0);
 	if (!(tok_l = new std::list<t_tok*>()))
 		ERROR("tok_l");
-	if (std::regex_match(line, match, p_line, std::regex_constants::match_default))
+	if (std::regex_match(line, match, p_line,
+			std::regex_constants::match_default))
 		tok_l->push_back(new_tok(match[1].str(), INSTR));
-	else if (std::regex_match(line, match, p_line_val, std::regex_constants::match_default))
+	else if (std::regex_match(line, match, p_line_val,
+				std::regex_constants::match_default))
 	{
 		tok_l->push_back(new_tok(match[1].str(), INSTR));
 		if (!match[4].str().empty())
@@ -66,7 +69,8 @@ static int				get_token(t_tok_tab *toks,
 	}
 	else
 	{
-// 		Show error unknown line
+//Show error unknown line
+		std::cout << "Error : Instruction unknown : [" << line << "]" << std::endl;
 		delete (tok_l);
 		return (0);
 	}
@@ -74,39 +78,53 @@ static int				get_token(t_tok_tab *toks,
 	return (0);
 }
 
-t_tok_tab				*lexer(std::string filepath)
+//Read from file
+int			lexer(t_tok_tab **toks, std::string filepath)
 {
 	std::ifstream		file;
 	std::string			line;
-	t_tok_tab			*toks;
 
-	toks = NULL;
-	std::cout << "I lex file" << std::endl;//_DEBUG_//
 	file.exceptions(std::ifstream::badbit);
 	try
 	{
 		file.open(filepath);
 		if (file.is_open())
 		{
-			if (!(toks = new std::vector< std::list<t_tok*>* >()))
+			if (!(*toks = new std::vector< std::list<t_tok*>* >()))
 				ERROR("toks");
 			while (std::getline(file, line))
 			{
-				if (get_token(toks, line) == -1)
-					return (toks);
-// 				lexe file
+				if (get_token(*toks, line) == -1)
+					break ;
 			}
-			put_tok_tab(*toks);
 			file.close();
-// You must not delete toks before this function return
-// Implement an elaborate delete toks function that will be used instead of
-// the basic delete(toks) function call
-			delete(toks);
 		}
 	}
 	catch (const std::ifstream::failure& e)
 	{
 		ERROR("Exception opening/reading/closing file");
 	}
-	return (toks);
+	return (0);
+}
+
+//read from standard input
+int			lexer(t_tok_tab **toks)
+{
+	std::string			line;
+
+	try
+	{
+		if (!(*toks = new std::vector< std::list<t_tok*>* >()))
+			ERROR("toks");
+		while (std::getline(std::cin, line))
+		{
+			if (get_token(*toks, line) == -1)
+				break ;
+		}
+	}
+	catch (const std::ifstream::failure& e)
+	{
+		ERROR("Exception opening/reading/closing standard input");
+	}
+	return (0);
 }

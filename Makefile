@@ -6,7 +6,7 @@
 #    By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/22 16:40:12 by bmbarga           #+#    #+#              #
-#    Updated: 2017/09/18 17:59:42 by bmbarga          ###   ########.fr        #
+#    Updated: 2017/09/19 17:52:58 by bmbarga          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ EXCEP_DIR = exceptions/
 FACT_DIR = factory/
 ERROR_DIR = error/
 LEXER_DIR = lexer/
+PARSER_DIR = parser/
 
 MAIN = main.cpp
 VM = Vm.class.cpp
@@ -29,6 +30,7 @@ EXCEP = DivExcep.class.cpp ModExcep.class.cpp WrongTypeExcep.class.cpp
 FACT = Factory.class.cpp
 ERROR = error.cpp
 LEXER = lexer.cpp token.cpp
+PARSER = parser.cpp
 
 MAINS = $(addprefix $(MAIN_DIR), $(MAIN))
 VMS = $(addprefix $(VM_DIR), $(VM))
@@ -38,10 +40,13 @@ EXCEPS = $(addprefix $(EXCEP_DIR), $(EXCEP))
 FACTS = $(addprefix $(FACT_DIR), $(FACT))
 ERRORS =  $(addprefix $(ERROR_DIR), $(ERROR))
 LEXERS =  $(addprefix $(LEXER_DIR), $(LEXER))
+PARSERS =  $(addprefix $(PARSER_DIR), $(PARSER))
 
-SRC_OBJ = $(MAIN) $(VM) $(OP) $(STACK) $(EXCEP) $(FACT) $(ERROR) $(LEXER)
+SRC_OBJ = $(MAIN) $(VM) $(OP) $(STACK) $(EXCEP) $(FACT) $(ERROR) $(LEXER) \
+		  $(PARSER)
 
-SRC = $(MAINS) $(VMS) $(OPS) $(STACKS) $(EXCEPS) $(FACTS) $(ERRORS) $(LEXERS)
+SRC = $(MAINS) $(VMS) $(OPS) $(STACKS) $(EXCEPS) $(FACTS) $(ERRORS) $(LEXERS) \
+		  $(PARSERS)
 
 OBJ = $(SRC_OBJ:.cpp=.o)
 
@@ -66,11 +71,12 @@ INCLUDES =	-I ./includes/ \
 			-I $(addprefix $(INC_PATH), $(EXCEP_DIR)) \
 			-I $(addprefix $(INC_PATH), $(FACT_DIR)) \
 			-I $(addprefix $(INC_PATH), $(ERROR_DIR)) \
-			-I $(addprefix $(INC_PATH), $(LEXER_DIR))
+			-I $(addprefix $(INC_PATH), $(LEXER_DIR)) \
+			-I $(addprefix $(INC_PATH), $(PARSER_DIR))
 
 LIB =
 
-CC = g++
+CC = clang++
 
 all: $(NAME)
 

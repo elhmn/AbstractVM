@@ -6,16 +6,17 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/12 17:06:33 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/19 18:09:43 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include <cstdlib>
 #include "Vm.class.hpp"
 #include "Operand.class.hpp"
 #include "Factory.class.hpp"
-#include <iostream>
-#include <cstdlib>
-#include <lexer.hpp>
+#include "lexer.hpp"
+#include "parser.hpp"
 
 bool	Vm::verbose = false;
 Vm		*Vm::_firstInstance = NULL;
@@ -53,18 +54,18 @@ Vm		*Vm::getInstance(void)
 
 void	Vm::run(std::string path)
 {
-	(void)path;
+	t_tok_tab			*toks;
+
+	toks = NULL;
 	this->start();
 	if (!(this->_stack = new Stack()))
 	{
 		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
 		exit(0);
 	}
-	lexer(path);
-// 	Read() from path
-//	Lexer()
-//	Parse()
-//	Exec()
+	lexer(&toks, path);
+ 	parser(&toks);
+	exec(&toks);
 //	clear stack ()
 	this->stop();
 	std::cout << "vm run from file" << std::endl;
@@ -72,6 +73,9 @@ void	Vm::run(std::string path)
 
 void	Vm::run(void)
 {
+	t_tok_tab			*toks;
+
+	toks = NULL;
 	this->start();
  	while (!this->stopped()) //condition de reprise
  	{
@@ -80,6 +84,9 @@ void	Vm::run(void)
 			std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
 			exit(0);
 		}
+		lexer(&toks);
+		parser(&toks);
+		exec(&toks);
 // 		this->_stack->push(new Operand<t_int8>(Int8, 23));
 // 		this->_stack->push(new Operand<t_int8>(Int8, 0));
 // 		try
@@ -91,13 +98,12 @@ void	Vm::run(void)
 // 			std::cout << "Error :: " << e.what() << std::endl;
 // 		}
 // 		std::cout << "dumped :: " << std::endl;
-		this->_stack->push(Factory::getInstance()->createOperand(Int8, "-1"));
-		this->_stack->push(Factory::getInstance()->createOperand(Int16, "-2"));
-		this->_stack->push(Factory::getInstance()->createOperand(Int32, "-3"));
-		this->_stack->push(Factory::getInstance()->createOperand(Float, "-4.8787"));
-		this->_stack->push(Factory::getInstance()->createOperand(Double, "5"));
-		this->_stack->dump();
-
+// 		this->_stack->push(Factory::getInstance()->createOperand(Int8, "-1"));
+// 		this->_stack->push(Factory::getInstance()->createOperand(Int16, "-2"));
+// 		this->_stack->push(Factory::getInstance()->createOperand(Int32, "-3"));
+// 		this->_stack->push(Factory::getInstance()->createOperand(Float, "-4.8787"));
+// 		this->_stack->push(Factory::getInstance()->createOperand(Double, "5"));
+// 		this->_stack->dump();
 // 		this->_stack->print();
 // 		Read() from stdin
 // 		Lexer()
