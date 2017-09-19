@@ -1,7 +1,0 @@
-I read from file
-I lex file
-UNKNOWN line :: ##############################
-empty or commented line : 
-LINE : []
-end of script
-vm run from file
