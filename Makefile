@@ -63,7 +63,7 @@ OBJS = $(addprefix $(OBJDIR), $(OBJ))
 
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
-FLAG = -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra -std=c++11
 
 INC_PATH = ./includes/
 

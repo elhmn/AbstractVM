@@ -53,7 +53,7 @@ class		 Operand: public IOperand
 	virtual eOperandType getType(void) const; // Type of the instance
 
 // actions
-	static std::string		nbrToString(eOperandType type, T val);
+	static std::string		nbrToString(eOperandType type, t_double val);
 
 // operator overload
 	virtual IOperand const * operator+(IOperand const & rhs) const; // Sum
@@ -137,15 +137,20 @@ eOperandType	Operand<T>::getType(void) const
 
 //actions
 template<typename T>
-std::string		Operand<T>::nbrToString(eOperandType type, T val)
+std::string		Operand<T>::nbrToString(eOperandType type, t_double val)
 {
 	std::stringstream	ss;
 
-// 	std::cout << "val = " << val << std::endl;//_DEBUG_//
-	if (type == Int8)
+	std::cout << "val = " << val << std::endl;//_DEBUG_//
+	if (type == Int8
+		|| type == Int16)
 		ss << static_cast<t_int16>(val);
+	else if (type == Int32)
+		ss << static_cast<t_int32>(val);
+	else if (type == Float)
+		ss << static_cast<t_float>(val);
 	else
-		ss << val;
+		ss << static_cast<t_double>(val);
 	return (ss.str());
 }
 
@@ -164,7 +169,8 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() + op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() + op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int16)
@@ -173,7 +179,8 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() + op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() + op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int32)
@@ -183,7 +190,8 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() + op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() + op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Float)
@@ -192,24 +200,19 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() + op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() + op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Double)
 	{
-		t_int32		a = 10;
-		t_double	b = 10.2;
-
-		std::cout << "Debug Double : type : " << type << std::endl;//_DEBUG_//
-		std::cout << a << " + " << b << " = " << a + b << std::endl;//_DEBUG_//
  		Operand<t_double> const	*op = dynamic_cast<Operand<t_double> const *>(&rhs);
 
-		t_double v = this->getValue() + op->getValue();
-		std::cout << "real calc" << this->getValue() << " + " <<  op->getValue() << " = " << nbrToString(type, v) << std::endl;//_DEBUG_//
 		if (op)
 		{
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, v)));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() + op->getValue())));
 		}
 	}
 	std::cout << "Error " << std::endl;
@@ -228,7 +231,8 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() - op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() - op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int16)
@@ -237,7 +241,8 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() - op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() - op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int32)
@@ -246,7 +251,8 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() - op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() - op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Float)
@@ -255,7 +261,8 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() - op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() - op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Double)
@@ -264,7 +271,8 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() - op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() - op->getValue())));
 		}
 	}
 	return (NULL);
@@ -283,7 +291,8 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() * op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() * op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int16)
@@ -292,7 +301,8 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() * op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() * op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int32)
@@ -301,7 +311,8 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() * op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() * op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Float)
@@ -310,7 +321,8 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() * op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() * op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Double)
@@ -319,7 +331,8 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 		if (op)
 		{
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
-			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() * op->getValue())));
+			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() * op->getValue())));
 		}
 	}
 	return (NULL);
@@ -339,7 +352,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw DivExcep();
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() / op->getValue())));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() / op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int16)
@@ -350,7 +364,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw DivExcep();
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() / op->getValue())));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() / op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Int32)
@@ -361,7 +376,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw DivExcep();
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() / op->getValue())));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() / op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Float)
@@ -372,7 +388,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw DivExcep();
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
- 			return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() / op->getValue())));
+ 			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() / op->getValue())));
 		}
 	}
 	else if (rhs.getType() == Double)
@@ -383,7 +400,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw DivExcep();
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, this->getValue() / op->getValue())));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					this->getValue() / op->getValue())));
 		}
 	}
 	return (NULL);
@@ -410,7 +428,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw ModExcep();
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
 	}
 	else if (rhs.getType() == Int16)
@@ -421,7 +440,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw ModExcep();
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
 	}
 	else if (rhs.getType() == Int32)
@@ -432,7 +452,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw ModExcep();
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
 	}
 	else if (rhs.getType() == Float)
@@ -443,7 +464,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw ModExcep();
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
- 			return (Factory::getInstance()->createOperand(type, nbrToString(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+ 			return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
 	}
 	else if (rhs.getType() == Double)
@@ -454,7 +476,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw ModExcep();
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type, static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
 		}
 	}
 	return (NULL);
