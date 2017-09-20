@@ -85,7 +85,8 @@ IOperand const	*Factory::createDouble(std::string const &value) const
 }
 
 //factory method
-IOperand const *Factory::createOperand(eOperandType type, std::string const &value) const
+IOperand const *Factory::createOperand(eOperandType type,
+					std::string const &value) const
 {
 	int		i;
 

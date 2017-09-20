@@ -78,7 +78,7 @@ INCLUDES =	-I ./includes/ \
 			-I $(addprefix $(INC_PATH), $(PARSER_DIR)) \
 			-I $(addprefix $(INC_PATH), $(EXEC_DIR))
 
-LIB =
+LIB = -lm
 
 CC = clang++
 

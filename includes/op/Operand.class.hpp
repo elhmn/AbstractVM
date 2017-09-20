@@ -20,6 +20,7 @@
 # include <typeinfo>
 # include <vector>
 # include <sstream>
+# include <cmath>
 
 // TODO:
 // - Exception handling (i'll do that later)
@@ -161,8 +162,6 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 	eOperandType		type;
 
 	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
-	(void)type;
-	std::cout << "Debug type : " << type << std::endl;//_DEBUG_//
 	if (rhs.getType() == Int8)
 	{
  		Operand<t_int8> const	*op = dynamic_cast<Operand<t_int8> const *>(&rhs);
@@ -413,12 +412,6 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 {
 	eOperandType	type;
 
-	if (this->getType() == Double || this->getType() == Float
-		|| rhs.getType() == Float || rhs.getType() == Double)
-	{
-		throw ModExcep();
-		return (NULL); //do something in that case
-	}
 	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
 	if (rhs.getType() == Int8)
 	{
@@ -429,7 +422,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 				throw ModExcep();
 			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
 		}
 	}
 	else if (rhs.getType() == Int16)
@@ -441,7 +434,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 				throw ModExcep();
 			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
 		}
 	}
 	else if (rhs.getType() == Int32)
@@ -453,7 +446,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 				throw ModExcep();
 			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
 		}
 	}
 	else if (rhs.getType() == Float)
@@ -464,8 +457,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 			if (op->getValue() == 0)
 				throw ModExcep();
 			std::cout << "Float good cast " << std::endl;//_DEBUG_//
- 			return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
 		}
 	}
 	else if (rhs.getType() == Double)
@@ -477,7 +470,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 				throw ModExcep();
 			std::cout << "Double good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					static_cast<t_int32>(this->getValue()) % static_cast<t_int32>(op->getValue()))));
+					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
 		}
 	}
 	return (NULL);
