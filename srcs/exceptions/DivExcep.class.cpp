@@ -13,11 +13,12 @@
 #include "DivExcep.class.hpp"
 
 //constructors
-DivExcep::DivExcep(void)
+DivExcep::DivExcep(void) : std::runtime_error("")
 {
+
 }
 
-DivExcep::DivExcep(DivExcep const &rhs)
+DivExcep::DivExcep(DivExcep const &rhs) : std::runtime_error("")
 {
 	(void)rhs;
 }
@@ -25,10 +26,11 @@ DivExcep::DivExcep(DivExcep const &rhs)
 //destructor
 DivExcep::~DivExcep(void) throw()
 {
-}	
+
+}
 
 //functions
-// const char	*DivExcep::what(void) throw()
-// {
-// 	return ("division by zero");
-// }
+const char	*DivExcep::what(void) const throw()
+{
+	return ("division by zero");
+}

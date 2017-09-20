@@ -32,23 +32,66 @@ static eOperandType			getOperandType(std::string sType)
 	return (Double);
 }
 
+static void				initExec(t_tok_tab **toks, Vm **v, Stack **s)
+{
+	if (!toks || !*toks)
+		ERROR("toks");
+	if (!(*v = Vm::getInstance()))
+		ERROR("vm");
+	if (!(*s = v[0]->getStack()))
+		ERROR("st");
+}
+
+static void				execComplexCommand(Stack *st, std::string c,
+							std::string opType, std::string opVal)
+{
+	Factory								*fc;
+
+	if (!st)
+		ERROR("st");
+	if (!(fc = Factory::getInstance()))
+		ERROR("fc");
+	if (c == K_PUSH)
+		st->push(fc->createOperand(getOperandType(opType), opVal));
+	//free value after assertion
+	else if (c == K_ASSERT)
+		st->assert(fc->createOperand(getOperandType(opType), opVal));
+}
+
+
+static void				execSimpleCommand(Stack *st, Vm *vm, std::string c)
+{
+	if (!st)
+		ERROR("st");
+	if (c == K_POP)
+		st->pop();
+	else if (c == K_DUMP)
+		st->dump();
+	else if (c == K_ADD)
+		st->add();
+	else if (c == K_SUB)
+		st->sub();
+	else if (c == K_MUL)
+		st->mul();
+	else if (c == K_DIV)
+		st->div();
+	else if (c == K_MOD)
+		st->mod();
+	else if (c == K_PRINT)
+		st->print();
+	else if (c == K_EXIT)
+		vm->vm_exit();
+}
+
 int						exec(t_tok_tab **toks)
 {
 	Vm									*vm;
 	Stack								*st;
-	Factory								*fc;
 	std::list<t_tok*>					l;
 	std::list<t_tok*>::const_iterator	lt;
 	std::string							vTab[3];
 
-	if (!toks || !*toks)
-		ERROR("toks");
-	if (!(vm = Vm::getInstance()))
-		ERROR("vm");
-	if (!(st = vm->getStack()))
-		ERROR("st");
-	if (!(fc = Factory::getInstance()))
-		ERROR("fc");
+	initExec(toks, &vm, &st);
 	for (t_tok_tab::const_iterator it = (**toks).begin(); it != (**toks).end(); it++)
 	{
 		l = **it;
@@ -59,39 +102,15 @@ int						exec(t_tok_tab **toks)
 		{
 			vTab[1] = (*(++lt))->val;
 			vTab[2] = (*(++lt))->val;
-			if (vTab[0] == K_PUSH)
-				st->push(fc->createOperand(getOperandType(vTab[1]), vTab[2]));
-			//free value after assertion
-			else if (vTab[0] == K_ASSERT)
-				st->assert(fc->createOperand(getOperandType(vTab[1]), vTab[2]));
+			execComplexCommand(st, vTab[0], vTab[1], vTab[2]);
 			//push assert
 // 			std::cout << " " << vTab[1] << " " << vTab[2];//_DEBUG_//
 		}
 		else
 		{
-			if (vTab[0] == K_POP)
-				st->pop();
-			else if (vTab[0] == K_DUMP)
-				st->dump();
-			else if (vTab[0] == K_ADD)
-				st->add();
-			else if (vTab[0] == K_SUB)
-				st->sub();
-			else if (vTab[0] == K_MUL)
-				st->mul();
-			else if (vTab[0] == K_DIV)
-				st->div();
-			else if (vTab[0] == K_MOD)
-				st->mod();
-			else if (vTab[0] == K_PRINT)
-				st->print();
-			else if (vTab[0] == K_EXIT)
-				vm->vm_exit();
+			execSimpleCommand(st, vm, vTab[0]);
 		}
-		std::cout << std::endl;//_DEBUG_//
+// 		std::cout << std::endl;//_DEBUG_//
 	}
-
-// 	std::cout << "I Dump : " << std::endl;//_DEBUG_//
-// 	st->dump();//_DEBUG_//
 	return (0);
 }

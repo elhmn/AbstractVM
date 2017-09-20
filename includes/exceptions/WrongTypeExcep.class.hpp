@@ -3,7 +3,7 @@
 
 # include <iostream>
 
-class	WrongTypeExcep : public std::exception
+class	WrongTypeExcep : public std::logic_error
 {
 	public :
 //constructors
@@ -17,7 +17,7 @@ class	WrongTypeExcep : public std::exception
 	WrongTypeExcep &operator=(WrongTypeExcep &rhs);
 
 //functions
-// 	virtual const char *what(void) throw();
+	const char *what(void) const throw();
 };
 
 #endif

@@ -110,7 +110,7 @@ void	Stack::print(void) const
 		std::cout << "Can't print" << std::endl;//_DEBUG_//
 		exit(0);//_DEBUG_//
 	}
-	std::cout << castInt8(o)->getValue() << std::endl;
+	std::cout << castInt8(o)->getValue();
 }
 
 void	Stack::dump(void) const
@@ -230,7 +230,7 @@ void	Stack::mul(void)
 	b = this->_stack->top();
 	this->_stack->pop();
 	this->push(*b * *a);
-	std::cout <<  "I mul" << std::endl;
+// 	std::cout <<  "I mul" << std::endl;//_DEBUG_//
 }
 
 void	Stack::div(void)
@@ -257,7 +257,7 @@ void	Stack::div(void)
 	this->_stack->pop();
 	// don't forget to throw the div by zero exception
 	this->push(*b / *a);
-	std::cout <<  "I div" << std::endl;
+	std::cout <<  "I div" << std::endl;//_DEBUG_//
 }
 
 void	Stack::mod(void)

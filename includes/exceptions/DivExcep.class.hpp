@@ -5,7 +5,7 @@
 
 //maybe add iostream
 
-class	DivExcep : public std::exception
+class	DivExcep : public std::runtime_error
 {
 	public :
 //constructors
@@ -16,10 +16,10 @@ class	DivExcep : public std::exception
 	virtual ~DivExcep(void) throw();
 
 //operator overload
-	DivExcep &operator=(DivExcep &rhs);	
+	DivExcep &operator=(DivExcep &rhs);
 
 //functions
-// 	virtual const char *what(void) throw();
+	const char *what(void) const throw();
 };
 
 #endif

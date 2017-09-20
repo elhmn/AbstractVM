@@ -13,11 +13,12 @@
 #include  "ModExcep.class.hpp"
 
 //constructors
-ModExcep::ModExcep(void)
+ModExcep::ModExcep(void) : std::runtime_error("")
 {
+
 }
 
-ModExcep::ModExcep(ModExcep const &rhs)
+ModExcep::ModExcep(ModExcep const &rhs) : std::runtime_error("")
 {
 	(void)rhs;
 }
@@ -28,7 +29,7 @@ ModExcep::~ModExcep(void) throw()
 }
 
 //functions
-// const char	*ModExcep::what(void) throw()
-// {
-// 	return ("wrong modulo operand");
-// }
+const char	*ModExcep::what(void) const throw()
+{
+	return ("modulo by zero");
+}

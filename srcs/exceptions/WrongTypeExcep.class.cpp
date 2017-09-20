@@ -13,11 +13,13 @@
 #include "WrongTypeExcep.class.hpp"
 
 //constructors
-WrongTypeExcep::WrongTypeExcep(void)
+WrongTypeExcep::WrongTypeExcep(void) : std::logic_error("")
 {
+
 }
 
-WrongTypeExcep::WrongTypeExcep(WrongTypeExcep const &rhs)
+
+WrongTypeExcep::WrongTypeExcep(WrongTypeExcep const &rhs) : std::logic_error("")
 {
 	(void)rhs;
 }
@@ -28,7 +30,7 @@ WrongTypeExcep::~WrongTypeExcep(void) throw()
 }
 
 //functions
-// const char	*WrongTypeExcep::what(void) throw()
-// {
-// 	return ("wrong type");
-// }
+const char	*WrongTypeExcep::what(void) const throw()
+{
+	return ("wrong type");
+}

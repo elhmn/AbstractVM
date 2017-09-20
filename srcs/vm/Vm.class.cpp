@@ -94,28 +94,6 @@ void	Vm::run(void)
 		lexer(&toks);
 		parser(&toks);
 		exec(&toks);
-// 		this->_stack->push(new Operand<t_int8>(Int8, 23));
-// 		this->_stack->push(new Operand<t_int8>(Int8, 0));
-// 		try
-// 		{
-// 			this->_stack->div();
-// 		}
-// 		catch (DivExcep &e)
-// 		{
-// 			std::cout << "Error :: " << e.what() << std::endl;
-// 		}
-// 		std::cout << "dumped :: " << std::endl;
-// 		this->_stack->push(Factory::getInstance()->createOperand(Int8, "-1"));
-// 		this->_stack->push(Factory::getInstance()->createOperand(Int16, "-2"));
-// 		this->_stack->push(Factory::getInstance()->createOperand(Int32, "-3"));
-// 		this->_stack->push(Factory::getInstance()->createOperand(Float, "-4.8787"));
-// 		this->_stack->push(Factory::getInstance()->createOperand(Double, "5"));
-// 		this->_stack->dump();
-// 		this->_stack->print();
-// 		Read() from stdin
-// 		Lexer()
-// 		Parse()
-// 		Exec()
 // 		clear stack ()
 // 		delete stack ()
 // 		set stack to NULL
@@ -128,6 +106,7 @@ void	Vm::run(void)
 void	Vm::vm_exit(void)
 {
 	//the program should quit properly
+	//clear the stack before leaving
 	exit(0);
 }
 

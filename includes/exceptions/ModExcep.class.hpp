@@ -3,7 +3,7 @@
 
 # include <iostream>
 
-class	ModExcep : public std::exception
+class	ModExcep : public std::runtime_error
 {
 	public :
 //constructors
@@ -17,7 +17,7 @@ class	ModExcep : public std::exception
 	ModExcep &operator=(ModExcep &rhs);	
 
 //functions
-// 	virtual const char *what(void) throw();
+	const char *what(void) const throw();
 };
 
 #endif
