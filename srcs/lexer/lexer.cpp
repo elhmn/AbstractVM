@@ -13,10 +13,11 @@
 #include <iostream>
 #include <fstream>
 #include <error.h>
-#include <lexer.hpp>
 #include <list>
 #include <vector>
 #include <regex>
+#include "lexer.hpp"
+#include "Excep.class.hpp"
 
 static t_tok			*new_tok(std::string val, e_tok type)
 {
@@ -69,9 +70,8 @@ static int				get_token(t_tok_tab *toks,
 	}
 	else
 	{
-//Show error unknown line
-		std::cout << "Error : Instruction unknown : [" << line << "]" << std::endl;
 		delete (tok_l);
+		throw E_LEXICAL(line.c_str());
 		return (0);
 	}
 	toks->push_back(tok_l);

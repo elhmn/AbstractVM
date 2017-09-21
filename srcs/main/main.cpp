@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include "Vm.class.hpp"
+#include "error.h"
 
 /*
 ** TODO
@@ -31,22 +32,13 @@
 
 int		main(int ac, char **av)
 {
-	Vm	*vm = NULL;
+	Vm	*vm;
 
 	if (!(vm = Vm::getInstance()))
-	{
-		std::cout << "vm instantiation error" << std::endl;
-		return (0);
-	}
+		ERROR("vm");
 	if (ac == 1)
-	{
-		std::cout << "I read from standard input" << std::endl;//_DEBUG_//
 		vm->run();
-	}
 	else
-	{
-		std::cout << "I read from file" << std::endl;//_DEBUG_//
 		vm->run(av[1]);
-	}
 	return (0);
 }

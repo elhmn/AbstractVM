@@ -15,6 +15,7 @@
 #include "error.h"
 #include "Vm.class.hpp"
 #include "Factory.class.hpp"
+#include "Excep.class.hpp"
 
 static eOperandType			getOperandType(std::string sType)
 {
@@ -97,20 +98,15 @@ int						exec(t_tok_tab **toks)
 		l = **it;
 		lt = l.begin();
 		vTab[0] = (*lt)->val;
-// 		std::cout << vTab[0]; //_DEBUG_//
 		if (l.size() ==  3)
 		{
 			vTab[1] = (*(++lt))->val;
 			vTab[2] = (*(++lt))->val;
 			execComplexCommand(st, vTab[0], vTab[1], vTab[2]);
-			//push assert
-// 			std::cout << " " << vTab[1] << " " << vTab[2];//_DEBUG_//
 		}
 		else
-		{
 			execSimpleCommand(st, vm, vTab[0]);
-		}
-// 		std::cout << std::endl;//_DEBUG_//
 	}
+	throw E_NOEXIT;
 	return (0);
 }

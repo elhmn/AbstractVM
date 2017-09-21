@@ -12,6 +12,8 @@
 
 #include "Stack.class.hpp"
 #include "Operand.class.hpp"
+#include "Excep.class.hpp"
+#include "error.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -52,23 +54,12 @@ void		Stack::assert(IOperand const *o) const
 		exit(0);
 	}
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		throw E_ASSERT;
 	tmp = this->_stack->top();
 	if (!tmp || tmp->getType() != o->getType())
-	{
-		std::cout << "Do not assert type" << std::endl;//_DEBUG_//
-		exit(0);//_DEBUG_//
-	}
+		throw E_ASSERT;
 	if (o->toString() != tmp->toString())
-	{
-		//throw expcetion or catch an  assert exception exception
-		std::cout << "Do not assert value" << std::endl;//_DEBUG_//
-		exit(0);//_DEBUG_//
-	}
-	std::cout << "I asserted something" << std::endl;
+		throw E_ASSERT;
 }
 
 void		Stack::push(IOperand const *o)
@@ -99,17 +90,10 @@ void	Stack::print(void) const
 
 	o = NULL;
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		return ;
 	o = this->_stack->top();
 	if (!o || o->getType() != Int8)
-	{
-		//throw expcetion or catch an  exception
-		std::cout << "Can't print" << std::endl;//_DEBUG_//
-		exit(0);//_DEBUG_//
-	}
+		throw E_ASSERT; 
 	std::cout << castInt8(o)->getValue();
 }
 
@@ -118,10 +102,7 @@ void	Stack::dump(void) const
 	std::stack<IOperand const *>	tmp;
 
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		return ;
 	//show and copy the stack
 	while (!this->_stack->empty())
 	{
@@ -139,17 +120,9 @@ void	Stack::dump(void) const
 
 void	Stack::pop(void)
 {
-	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
-	if (this->_stack->empty())
-	{
-		//here throw the exception
-		std::cout << "can't pop on an empty stack" << std::endl;
-		exit(0);
-	}
+	if (!this->_stack
+		|| this->_stack->empty())
+		throw E_EMPTYSTACK;
 	delete this->_stack->top();
 	this->_stack->pop();
 }
@@ -162,16 +135,9 @@ void	Stack::add(void)
 	a = NULL;
 	b = NULL;
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("_stack");
 	if (this->_stack->size() < 2)
-	{
-		//here throw the appropriate exception
-		std::cout << "can't add less than two values" << std::endl;
-		exit(0);
-	}
+		throw E_FEWOPERAND;
 	a = this->_stack->top();
 	this->_stack->pop();
 	b = this->_stack->top();
@@ -189,16 +155,9 @@ void	Stack::sub(void)
 	a = NULL;
 	b = NULL;
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("_stack");
 	if (this->_stack->size() < 2)
-	{
-		//here throw the appropriate exception
-		std::cout << "can't sub less than two values" << std::endl;
-		exit(0);
-	}
+		throw E_FEWOPERAND;
 	a = this->_stack->top();
 	this->_stack->pop();
 	b = this->_stack->top();
@@ -215,16 +174,9 @@ void	Stack::mul(void)
 	a = NULL;
 	b = NULL;
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("_stack");
 	if (this->_stack->size() < 2)
-	{
-		//here throw the appropriate exception
-		std::cout << "can't mult less than two values" << std::endl;
-		exit(0);
-	}
+		throw E_FEWOPERAND;
 	a = this->_stack->top();
 	this->_stack->pop();
 	b = this->_stack->top();
@@ -241,16 +193,9 @@ void	Stack::div(void)
 	a = NULL;
 	b = NULL;
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("_stack");
 	if (this->_stack->size() < 2)
-	{
-		//here throw the appropriate exception
-		std::cout << "can't div less than two values" << std::endl;
-		exit(0);
-	}
+		throw E_FEWOPERAND;
 	a = this->_stack->top();
 	this->_stack->pop();
 	b = this->_stack->top();
@@ -268,16 +213,9 @@ void	Stack::mod(void)
 	a = NULL;
 	b = NULL;
 	if (!this->_stack)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("_stack");
 	if (this->_stack->size() < 2)
-	{
-		//here throw the appropriate exception
-		std::cout << "can't mod less than two values" << std::endl;
-		exit(0);
-	}
+		throw E_FEWOPERAND;
 	a = this->_stack->top();
 	this->_stack->pop();
 	b = this->_stack->top();

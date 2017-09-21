@@ -3,6 +3,24 @@
 
 # include <iostream>
 
+// runtime error exception
+# define E_DIV					Excep<std::runtime_error>("Division by 0")
+# define E_MOD					Excep<std::runtime_error>("Modulo by 0")
+# define E_OVERFLOW				Excep<std::runtime_error>("Overflow")
+# define E_DOWNFLOW				Excep<std::runtime_error>("Downflow")
+# define E_EMPTYSTACK			Excep<std::runtime_error>("Empty stack")
+# define E_NOEXIT				Excep<std::runtime_error>("No exit command")
+# define E_ASSERT				Excep<std::runtime_error>("Assert not true")
+# define E_FEWOPERAND			Excep<std::runtime_error>("Too few operand")
+
+// logic error exception
+# define E_LEXICAL(TEXT)		Excep<std::runtime_error>( \
+								std::string("Lexical error : ") + \
+								TEXT)
+# define E_SYNTAX(TEXT)			Excep<std::runtime_error>( \
+								std::string("Syntax error : ") + \
+								TEXT)
+
 //maybe add iostream
 template<typename base_exception>
 class	Excep : public base_exception
@@ -13,13 +31,10 @@ class	Excep : public base_exception
 	std::string		_what;
 
 	public :
-//constructors
-// 	Excep(void) : _what("Excep"), base_exception(_what().c_str())
-// 	{
-// 
-// 	}
 
-	Excep(std::string what = "Except") : base_exception(what.c_str()), _what(what) 
+//constructors
+	Excep(std::string what = "Except") :
+			base_exception(what.c_str()), _what(what)
 	{
 
 	}

@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include "parser.hpp"
+#include "Excep.class.hpp"
 #include "error.h"
 
 // I stop executing at exit

@@ -18,6 +18,7 @@
 #include "lexer.hpp"
 #include "parser.hpp"
 #include "exec.hpp"
+#include "error.h"
 #include <map>
 
 bool	Vm::verbose = false;
@@ -61,21 +62,17 @@ Stack	*Vm::getStack(void) const
 
 void	Vm::run(std::string path)
 {
-	t_tok_tab						*toks;
+	t_tok_tab			*toks;
 
 	toks = NULL;
 	this->start();
 	if (!(this->_stack = new Stack()))
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("stack");
 	lexer(&toks, path);
  	parser(&toks);
 	exec(&toks);
 //	clear stack ()
 	this->stop();
-	std::cout << "vm run from file" << std::endl;
 }
 
 void	Vm::run(void)
@@ -87,17 +84,13 @@ void	Vm::run(void)
  	while (!this->stopped()) //condition de reprise
  	{
 		if (!(this->_stack = new Stack()))
-		{
-			std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-			exit(0);
-		}
+			ERROR("stack");
 		lexer(&toks);
 		parser(&toks);
 		exec(&toks);
 // 		clear stack ()
 // 		delete stack ()
 // 		set stack to NULL
- 		std::cout << "vm run" << std::endl;
 		this->stop();
  	}
 }

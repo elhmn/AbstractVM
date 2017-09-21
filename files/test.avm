@@ -1,6 +1,5 @@
 
 
-assert int8 (010)        ;;;; je suis con
 push int32(          42        )
 push int32(33)
 push double(42.42)
@@ -9,6 +8,3 @@ push float (         44.44     )
 pop
 push int8 (10)
 print
-assert double(42.42)
-
-//;;

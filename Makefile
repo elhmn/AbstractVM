@@ -12,7 +12,7 @@
 
 NAME = avm
 
-MAIN_DIR = main_functions/
+MAIN_DIR = main/
 VM_DIR = vm/
 OP_DIR = op/
 STACK_DIR = stack/
@@ -28,7 +28,7 @@ VM = Vm.class.cpp
 OP = Operand.class.cpp
 STACK = Stack.class.cpp
 EXEC = exec.cpp
-EXCEP = DivExcep.class.cpp ModExcep.class.cpp WrongTypeExcep.class.cpp
+EXCEP =
 FACT = Factory.class.cpp
 ERROR = error.cpp
 LEXER = lexer.cpp token.cpp

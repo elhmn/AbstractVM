@@ -15,7 +15,6 @@
 
 # include "IOperand.class.hpp"
 # include "Excep.class.hpp"
-# include "ModExcep.class.hpp"
 # include "Factory.class.hpp"
 # include <typeinfo>
 # include <vector>
@@ -349,7 +348,7 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw Excep<std::runtime_error>();
+				throw E_DIV;
 //			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					this->getValue() / op->getValue())));
@@ -361,7 +360,7 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw Excep<std::runtime_error>();
+				throw E_DIV;
 //			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					this->getValue() / op->getValue())));
@@ -373,7 +372,7 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw Excep<std::runtime_error>();
+				throw E_DIV;
 //			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					this->getValue() / op->getValue())));
@@ -385,7 +384,7 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw Excep<std::runtime_error>();
+				throw E_DIV;
 //			std::cout << "Float good cast " << std::endl;//_DEBUG_//
  			return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					this->getValue() / op->getValue())));
@@ -397,7 +396,7 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw Excep<std::runtime_error>();
+				throw E_DIV;
 //			std::cout << "Double good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					this->getValue() / op->getValue())));
@@ -419,7 +418,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw ModExcep();
+				throw E_MOD;
 //			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
@@ -431,7 +430,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw ModExcep();
+				throw E_MOD;
 //			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
@@ -443,7 +442,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw ModExcep();
+				throw E_MOD;
 //			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
@@ -455,7 +454,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw ModExcep();
+				throw E_MOD;
 //			std::cout << "Float good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
@@ -467,7 +466,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 		if (op)
 		{
 			if (op->getValue() == 0)
-				throw ModExcep();
+				throw E_MOD;
 //			std::cout << "Double good cast " << std::endl;//_DEBUG_//
 		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
