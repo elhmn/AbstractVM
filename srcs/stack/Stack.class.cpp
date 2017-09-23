@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:10 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 14:43:31 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 14:50:11 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ void		Stack::assert(IOperand const *o) const
 
 	tmp = NULL;
 	if (!o)
-	{
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("o");
 	if (!this->_stack)
 		throw E_ASSERT;
 	tmp = this->_stack->top();
@@ -68,17 +65,10 @@ void		Stack::push(IOperand const *o)
 	{
 		this->_stack = new std::stack<IOperand const *>();
 		if (!this->_stack)
-		{
-			std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-			exit(0);
-		}
+			ERROR("stack");
 	}
 	if (!o)
-	{
-		//normally maybe you must throw an exception
-		std::cout << "error :: " << "f->" << __FILE__ << " l->" << __LINE__ << std::endl;
-		exit(0);
-	}
+		ERROR("o");
 	this->_stack->push(o);
 }
 
@@ -143,8 +133,6 @@ void	Stack::add(void)
 	b = this->_stack->top();
 	this->_stack->pop();
 	this->push(*b + *a);
-	std::cout << "add those value then" << std::endl;//_DEBUG_//
-// 	std::cout <<  "I add" << std::endl;//_DEBUG_//
 }
 
 void	Stack::sub(void)
@@ -163,7 +151,6 @@ void	Stack::sub(void)
 	b = this->_stack->top();
 	this->_stack->pop();
 	this->push(*b - *a);
-	std::cout <<  "I sub" << std::endl;
 }
 
 void	Stack::mul(void)
@@ -182,7 +169,6 @@ void	Stack::mul(void)
 	b = this->_stack->top();
 	this->_stack->pop();
 	this->push(*b * *a);
-// 	std::cout <<  "I mul" << std::endl;//_DEBUG_//
 }
 
 void	Stack::div(void)
@@ -202,7 +188,6 @@ void	Stack::div(void)
 	this->_stack->pop();
 	// don't forget to throw the div by zero exception
 	this->push(*b / *a);
-	std::cout <<  "I div" << std::endl;//_DEBUG_//
 }
 
 void	Stack::mod(void)
@@ -223,5 +208,4 @@ void	Stack::mod(void)
 	// don't forget to throw the mod by zero exception
 	// and check also whether operand types is float or fouble
 	this->push(*b % *a);
-	std::cout <<  "I mod" << std::endl;
 }
