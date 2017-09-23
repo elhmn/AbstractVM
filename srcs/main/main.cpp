@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 16:52:42 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/17 16:03:36 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 14:41:21 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		main(int ac, char **av)
 	if (!(vm = Vm::getInstance()))
 		ERROR("vm");
 	if (ac == 1)
-		vm->run();
+		vm->run("");
 	else
 		vm->run(av[1]);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:46:22 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 19:29:20 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 14:36:51 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int					parser(t_tok_tab **toks)
 		}
 	}
 	if (!isExit)
-		std::cout << "Error : missing exit instruction" << std::endl;
+		throw E_SYNTAX("missing exit instruction");
 	return (0);
 }

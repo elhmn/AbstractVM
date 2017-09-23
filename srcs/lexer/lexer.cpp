@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:45:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 20:53:17 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 14:39:28 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,44 +87,33 @@ int			lexer(t_tok_tab **toks, std::string filepath)
 	file.exceptions(std::ifstream::badbit);
 	try
 	{
-		file.open(filepath);
-		if (file.is_open())
+		if (!filepath.empty())
 		{
-			if (!(*toks = new std::vector< std::list<t_tok*>* >()))
-				ERROR("toks");
-			while (std::getline(file, line))
+			file.open(filepath);
+			if (!file.is_open())
+				return (-1);
+		}
+		if (!(*toks = new std::vector< std::list<t_tok*>* >()))
+			ERROR("toks");
+		while (((filepath.empty())
+					? std::getline(std::cin, line) : std::getline(file, line)))
+		{
+			try
 			{
 				if (get_token(*toks, line) == -1)
 					break ;
 			}
-			file.close();
+			catch (std::logic_error e)
+			{
+				std::cout << "Error : " << e.what() << std::endl;
+			}
 		}
+		if (!filepath.empty())
+			file.close();
 	}
 	catch (const std::ifstream::failure& e)
 	{
 		ERROR("Exception opening/reading/closing file");
-	}
-	return (0);
-}
-
-//read from standard input
-int			lexer(t_tok_tab **toks)
-{
-	std::string			line;
-
-	try
-	{
-		if (!(*toks = new std::vector< std::list<t_tok*>* >()))
-			ERROR("toks");
-		while (std::getline(std::cin, line))
-		{
-			if (get_token(*toks, line) == -1)
-				break ;
-		}
-	}
-	catch (const std::ifstream::failure& e)
-	{
-		ERROR("Exception opening/reading/closing standard input");
 	}
 	return (0);
 }

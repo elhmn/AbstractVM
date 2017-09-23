@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 20:46:36 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 14:41:01 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ class	Vm
 	void				stop(void);
 
 //run
-	void				run(void);
 	void				run(std::string path);
 };
 

@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 20:15:56 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 14:40:43 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,30 +69,26 @@ void	Vm::run(std::string path)
 	if (!(this->_stack = new Stack()))
 		ERROR("stack");
 	lexer(&toks, path);
- 	parser(&toks);
-	exec(&toks);
-//	clear stack ()
-	this->stop();
-}
-
-void	Vm::run(void)
-{
-	t_tok_tab			*toks;
-
-	toks = NULL;
-	this->start();
- 	while (!this->stopped()) //condition de reprise
- 	{
-		if (!(this->_stack = new Stack()))
-			ERROR("stack");
-		lexer(&toks);
+	try
+	{
 		parser(&toks);
+	}
+	catch (std::logic_error e)
+	{
+		std::cout << "Error : " << e.what() << std::endl;
+	}
+	try
+	{
 		exec(&toks);
-// 		clear stack ()
-// 		delete stack ()
-// 		set stack to NULL
-		this->stop();
- 	}
+	}
+	catch (std::runtime_error e)
+	{
+		std::cout << "Error : Runtime : " << e.what() << std::endl;
+	}
+//	clear stack ()
+// 	delete stack ()
+// 	set stack to NULL
+	this->stop();
 }
 
 //actions

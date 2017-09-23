@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Excep.class.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/23 13:48:39 by bmbarga           #+#    #+#             */
+/*   Updated: 2017/09/23 14:18:15 by bmbarga          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EXCEP_CLASS_HPP
 # define EXCEP_CLASS_HPP
 
@@ -14,10 +26,10 @@
 # define E_FEWOPERAND			Excep<std::runtime_error>("Too few operand")
 
 // logic error exception
-# define E_LEXICAL(TEXT)		Excep<std::runtime_error>( \
+# define E_LEXICAL(TEXT)		Excep<std::logic_error>( \
 								std::string("Lexical error : ") + \
 								TEXT)
-# define E_SYNTAX(TEXT)			Excep<std::runtime_error>( \
+# define E_SYNTAX(TEXT)			Excep<std::logic_error>( \
 								std::string("Syntax error : ") + \
 								TEXT)
 
