@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:20:02 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 15:53:17 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 17:16:30 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,68 +192,10 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 	eOperandType	type;
 
 	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
-	if (rhs.getType() == Int8)
-	{
- 		Operand<t_int8> const	*op = dynamic_cast<Operand<t_int8> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_DIV;
-//			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					this->getValue() / op->getValue())));
-		}
-	}
-	else if (rhs.getType() == Int16)
-	{
- 		Operand<t_int16> const	*op = dynamic_cast<Operand<t_int16> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_DIV;
-//			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					this->getValue() / op->getValue())));
-		}
-	}
-	else if (rhs.getType() == Int32)
-	{
- 		Operand<t_int32> const	*op = dynamic_cast<Operand<t_int32> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_DIV;
-//			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					this->getValue() / op->getValue())));
-		}
-	}
-	else if (rhs.getType() == Float)
-	{
- 		Operand<t_float> const	*op = dynamic_cast<Operand<t_float> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_DIV;
-//			std::cout << "Float good cast " << std::endl;//_DEBUG_//
- 			return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					this->getValue() / op->getValue())));
-		}
-	}
-	else if (rhs.getType() == Double)
-	{
- 		Operand<t_double> const	*op = dynamic_cast<Operand<t_double> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_DIV;
-//			std::cout << "Double good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					this->getValue() / op->getValue())));
-		}
-	}
-	return (NULL);
-
+	if (std::stod(rhs.toString()) == 0)
+		throw E_DIV;
+ 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+				this->getValue() / std::stod(rhs.toString()))));
 }
 
 template<typename T>
@@ -262,67 +204,11 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 	eOperandType	type;
 
 	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
-	if (rhs.getType() == Int8)
-	{
- 		Operand<t_int8> const	*op = dynamic_cast<Operand<t_int8> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_MOD;
-//			std::cout << "int8 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
-		}
-	}
-	else if (rhs.getType() == Int16)
-	{
- 		Operand<t_int16> const	*op = dynamic_cast<Operand<t_int16> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_MOD;
-//			std::cout << "int16 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
-		}
-	}
-	else if (rhs.getType() == Int32)
-	{
- 		Operand<t_int32> const	*op = dynamic_cast<Operand<t_int32> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_MOD;
-//			std::cout << "int32 good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
-		}
-	}
-	else if (rhs.getType() == Float)
-	{
- 		Operand<t_float> const	*op = dynamic_cast<Operand<t_float> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_MOD;
-//			std::cout << "Float good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
-		}
-	}
-	else if (rhs.getType() == Double)
-	{
- 		Operand<t_double> const	*op = dynamic_cast<Operand<t_double> const *>(&rhs);
-		if (op)
-		{
-			if (op->getValue() == 0)
-				throw E_MOD;
-//			std::cout << "Double good cast " << std::endl;//_DEBUG_//
-		 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-					fmod(static_cast<t_double>(this->getValue()), static_cast<t_double>(op->getValue())))));
-		}
-	}
-	return (NULL);
+	if (std::stod(rhs.toString()) == 0)
+		throw E_MOD;
+	return (Factory::getInstance()->createOperand(type, nbrToString(type,
+				fmod(static_cast<t_double>(this->getValue()),
+					static_cast<t_double>(std::stod(rhs.toString()))))));
 }
 
 template<typename T>
