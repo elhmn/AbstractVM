@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:20:02 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 17:16:30 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 18:40:16 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <vector>
 # include <sstream>
 # include <cmath>
-#include "error.h"
+# include "error.h"
+# include "vm_types.hpp"
 # include "IOperand.class.hpp"
 # include "Excep.class.hpp"
 # include "Factory.class.hpp"
@@ -160,20 +161,33 @@ template<typename T>
 IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 {
 	eOperandType		type;
+	t_double			b;
+ 	t_double			a;
 
-	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
+	b = std::stod(rhs.toString());
+	a = this->getValue();
+	type = (this->getPrecision() < rhs.getPrecision())
+				? rhs.getType() : this->getType();
+	check_overflow(type, a, b);
+// 	check_downflow(type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-			this->getValue() + std::stod(rhs.toString()))));
+			this->getValue() + b)));
 }
 
 template<typename T>
 IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 {
 	eOperandType	type;
+	t_double			b;
+// 	t_double			a;
 
-	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
+	b = std::stod(rhs.toString());
+// 	a = this->getValue();
+	type = (this->getPrecision() < rhs.getPrecision())
+				? rhs.getType() : this->getType();
+// 	if ()
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
-			this->getValue() - std::stod(rhs.toString()))));
+			this->getValue() - b)));
 }
 
 template<typename T>
@@ -181,7 +195,8 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 {
 	eOperandType	type;
 
-	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
+	type = (this->getPrecision() < rhs.getPrecision())
+				? rhs.getType() : this->getType();
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() * std::stod(rhs.toString()))));
 }
@@ -191,7 +206,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 {
 	eOperandType	type;
 
-	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
+	type = (this->getPrecision() < rhs.getPrecision())
+				? rhs.getType() : this->getType();
 	if (std::stod(rhs.toString()) == 0)
 		throw E_DIV;
  	return (Factory::getInstance()->createOperand(type, nbrToString(type,
@@ -203,7 +219,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 {
 	eOperandType	type;
 
-	type = (this->getPrecision() < rhs.getPrecision()) ? rhs.getType() : this->getType();
+	type = (this->getPrecision() < rhs.getPrecision())
+				? rhs.getType() : this->getType();
 	if (std::stod(rhs.toString()) == 0)
 		throw E_MOD;
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,

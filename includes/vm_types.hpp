@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 21:45:29 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 20:12:41 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 18:02:13 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VM_TYPES_HPP
 
 # include <stdint.h>
+# include <cfloat>
 
 typedef int8_t		t_int8;
 typedef int16_t		t_int16;
@@ -29,5 +30,12 @@ enum				eOperandType
 	Float,
 	Double,
 };
+
+
+/*
+** exception/overflow
+*/
+
+void			check_overflow(eOperandType type, t_double a, t_double b);
 
 #endif

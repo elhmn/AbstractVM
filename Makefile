@@ -6,7 +6,7 @@
 #    By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/22 16:40:12 by bmbarga           #+#    #+#              #
-#    Updated: 2017/09/19 18:18:12 by bmbarga          ###   ########.fr        #
+#    Updated: 2017/09/23 18:18:36 by bmbarga          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ VM = Vm.class.cpp
 OP = Operand.class.cpp
 STACK = Stack.class.cpp
 EXEC = exec.cpp
-EXCEP =
+EXCEP = check_limit.cpp
 FACT = Factory.class.cpp
 ERROR = error.cpp
 LEXER = lexer.cpp token.cpp
