@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 21:45:29 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 18:02:13 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 19:00:47 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ enum				eOperandType
 ** exception/overflow
 */
 
-void			check_overflow(eOperandType type, t_double a, t_double b);
+void		check_overflow(std::string op,
+				eOperandType type, t_double a, t_double b);
 
 #endif

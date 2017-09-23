@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:20:02 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 18:40:16 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/23 19:02:35 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sstream>
 # include <cmath>
 # include "error.h"
+# include "lexer.hpp"
 # include "vm_types.hpp"
 # include "IOperand.class.hpp"
 # include "Excep.class.hpp"
@@ -168,7 +169,7 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 	a = this->getValue();
 	type = (this->getPrecision() < rhs.getPrecision())
 				? rhs.getType() : this->getType();
-	check_overflow(type, a, b);
+	check_overflow(K_ADD, type, a, b);
 // 	check_downflow(type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() + b)));
