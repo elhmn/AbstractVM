@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 19:02:17 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 12:07:01 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 13:19:23 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,9 @@ static t_lim_f			downTab[5] = {
 									};
 
 
-void		check_overflow(std::string op, eOperandType type, t_double a, t_double b)
+void		check_op_overflow(std::string op,
+								eOperandType type, t_double a, t_double b)
 {
-	std::cout << "type = " << type << " | a = [" << a << "] | b = [" << b << " ]"<< std::endl;//_DEBUG_//
 	for (int i = 0; i < 5; i++)
 	{
 		if (typeTab[i] == type)
@@ -164,7 +164,8 @@ void		check_overflow(std::string op, eOperandType type, t_double a, t_double b)
 	}
 }
 
-void		check_downflow(std::string op, eOperandType type, t_double a, t_double b)
+void		check_op_downflow(std::string op,
+								eOperandType type, t_double a, t_double b)
 {
 	for (int i = 0; i < 5; i++)
 	{
@@ -178,4 +179,35 @@ void		check_downflow(std::string op, eOperandType type, t_double a, t_double b)
 			}
 		}
 	}
+}
+
+void		check_overflow(eOperandType type, t_double a)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if (typeTab[i] == type)
+		{
+			if (a > limMax[i])
+				throw E_OVERFLOW;
+		}
+	}
+}
+
+void		check_downflow(eOperandType type, t_double a)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if (typeTab[i] == type)
+		{
+			if (a < limMin[i])
+				throw E_DOWNFLOW;
+		}
+	}
+}
+
+t_double		check_limits(eOperandType type, t_double a)
+{
+	check_overflow(type, a);
+	check_downflow(type, a);
+	return (a);
 }

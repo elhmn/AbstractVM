@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:20:02 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 11:27:36 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 12:43:46 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ std::string		Operand<T>::nbrToString(eOperandType type, t_double val)
 {
 	std::stringstream	ss;
 
-//	std::cout << "val = " << val << std::endl;//_DEBUG_//
 	if (type == Int8
 		|| type == Int16)
 		ss << static_cast<t_int16>(val);
@@ -169,8 +168,8 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 	a = this->getValue();
 	type = (this->getPrecision() < rhs.getPrecision())
 				? rhs.getType() : this->getType();
-	check_overflow(K_ADD, type, a, b);
-	check_downflow(K_ADD, type, a, b);
+	check_op_overflow(K_ADD, type, a, b);
+	check_op_downflow(K_ADD, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() + b)));
 }
@@ -186,8 +185,8 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 	a = this->getValue();
 	type = (this->getPrecision() < rhs.getPrecision())
 				? rhs.getType() : this->getType();
-	check_overflow(K_SUB, type, a, b);
-	check_downflow(K_SUB, type, a, b);
+	check_op_overflow(K_SUB, type, a, b);
+	check_op_downflow(K_SUB, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() - b)));
 }
@@ -203,8 +202,8 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 	a = this->getValue();
 	type = (this->getPrecision() < rhs.getPrecision())
 				? rhs.getType() : this->getType();
-	check_overflow(K_MUL, type, a, b);
-	check_downflow(K_MUL, type, a, b);
+	check_op_overflow(K_MUL, type, a, b);
+	check_op_downflow(K_MUL, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() * std::stod(rhs.toString()))));
 }
@@ -222,8 +221,8 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 				? rhs.getType() : this->getType();
 	if (b == 0)
 		throw E_DIV;
-	check_overflow(K_DIV, type, a, b);
-	check_downflow(K_DIV, type, a, b);
+	check_op_overflow(K_DIV, type, a, b);
+	check_op_downflow(K_DIV, type, a, b);
  	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 				this->getValue() / std::stod(rhs.toString()))));
 }
@@ -241,8 +240,8 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 				? rhs.getType() : this->getType();
 	if (b == 0)
 		throw E_MOD;
-	check_overflow(K_MOD, type, a, b);
-	check_downflow(K_MOD, type, a, b);
+	check_op_overflow(K_MOD, type, a, b);
+	check_op_downflow(K_MOD, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 				fmod(static_cast<t_double>(this->getValue()),
 					static_cast<t_double>(std::stod(rhs.toString()))))));
