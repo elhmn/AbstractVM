@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:46:22 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 14:47:17 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 14:29:04 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 #include "parser.hpp"
 #include "Excep.class.hpp"
 #include "error.h"
-
-// I stop executing at exit
-//
-// If there is no exit instruction in the file display an
-// Warning
-//
-//
-// The parser also removes every instruction folowing an exit before any execution
-//
-// Check syntax errors
 
 int					parser(t_tok_tab **toks)
 {
@@ -33,7 +23,8 @@ int					parser(t_tok_tab **toks)
 	isExit = false;
 	if (!toks || !*toks)
 		ERROR("toks");
-	for (t_tok_tab::const_iterator it = (**toks).begin(); it != (**toks).end(); it++)
+	for (t_tok_tab::const_iterator it = (**toks).begin();
+			it != (**toks).end(); it++)
 	{
 		l = **it;
 		if (!isExit && (**l.begin()).val == K_EXIT)

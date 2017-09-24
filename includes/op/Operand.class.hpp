@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:20:02 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 12:43:46 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 13:26:06 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@
 # include "IOperand.class.hpp"
 # include "Excep.class.hpp"
 # include "Factory.class.hpp"
-
-// TODO:
-// - Exception handling (i'll do that later)
 
 template<typename T>
 class		 Operand: public IOperand
@@ -85,6 +82,8 @@ template<typename T>
 bool	Operand<T>::verbose = false;
 
 //constructors
+
+// If it is an int8 (a char then) cast it to an int16
 template<typename T>
 Operand<T>::Operand(eOperandType type, T val) : _val(val), _type(type)
 {
@@ -92,12 +91,6 @@ Operand<T>::Operand(eOperandType type, T val) : _val(val), _type(type)
 
 	if (Operand<T>::verbose)
 		std::cout << "Operand constructor called" << std::endl;
-	// check that the value is not out of range
-	// if the value is out range crop it to max value
-	// or let c++ compiler do is own stuff
-	//
-	// Also if it is a int8 (a char then) cast it into a int16
-//// 	std::cout << "this->_val = " << this->_val << std::endl;//_DEBUG_//
 	if (type == Int8)
 		ss << static_cast<t_int16>(this->_val);
 	else

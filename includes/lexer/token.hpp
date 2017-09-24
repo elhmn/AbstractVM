@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:26:41 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 18:55:46 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 14:40:40 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void			put_tok(t_tok t);
 void			put_tok_list(std::list<t_tok*> l);
 void			put_tok_tab(t_tok_tab tab);
 std::string		conv_tok_type(int type);
+void			clear_tok_tab(t_tok_tab **toks);
 void			clear_partial_tab(t_tok_tab *toks,
 					t_tok_tab::const_iterator b,
 					t_tok_tab::const_iterator e);

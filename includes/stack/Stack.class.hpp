@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:04:12 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 20:05:38 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 14:49:57 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ class	Stack
 	std::stack<IOperand const*>	*getStack(void) const;
 
 //actions
-	void	assert(IOperand const *o) const;// implementation incomplete (lasts exceptions)
+	void	assert(IOperand const *o) const;
 	void	push(IOperand const *o);
-	void	print(void) const;// implemention incomplete (lasts exceptions)
+	void	print(void) const;
 	void	dump(void) const;
 	void	pop(void);
 	void	add(void);
@@ -50,6 +50,7 @@ class	Stack
 	void	mul(void);
 	void	div(void);
 	void	mod(void);
+	void	clear(void);
 };
 
 #endif

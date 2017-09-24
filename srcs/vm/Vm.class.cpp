@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 13:12:16 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 15:03:06 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,16 @@ void	Vm::run(std::string path)
 	{
 		std::cout << "Error : Runtime : " << e.what() << std::endl;
 	}
-//	clear stack ()
-// 	delete stack ()
-// 	set stack to NULL
+	clear_tok_tab(&toks);
+	this->_stack->clear();
 	this->stop();
 }
 
 //actions
 void	Vm::vm_exit(void)
 {
-	//the program should quit properly
-	//clear the stack before leaving
+	if (this->_stack)
+		this->_stack->clear();
 	exit(0);
 }
 

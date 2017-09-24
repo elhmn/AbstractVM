@@ -6,12 +6,13 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 17:47:33 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/19 22:40:33 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 14:55:26 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "exec.hpp"
+#include "parser.hpp"
 #include "error.h"
 #include "Vm.class.hpp"
 #include "Factory.class.hpp"
@@ -60,7 +61,7 @@ static void				execComplexCommand(Stack *st, std::string c,
 }
 
 
-static void				execSimpleCommand(Stack *st, Vm *vm, std::string c)
+static void				execSimpleCommand(t_tok_tab **t, Stack *st, Vm *vm, std::string c)
 {
 	if (!st)
 		ERROR("st");
@@ -81,7 +82,10 @@ static void				execSimpleCommand(Stack *st, Vm *vm, std::string c)
 	else if (c == K_PRINT)
 		st->print();
 	else if (c == K_EXIT)
+	{
+		clear_tok_tab(t);
 		vm->vm_exit();
+	}
 }
 
 int						exec(t_tok_tab **toks)
@@ -105,7 +109,7 @@ int						exec(t_tok_tab **toks)
 			execComplexCommand(st, vTab[0], vTab[1], vTab[2]);
 		}
 		else
-			execSimpleCommand(st, vm, vTab[0]);
+			execSimpleCommand(toks, st, vm, vTab[0]);
 	}
 	throw E_NOEXIT;
 	return (0);

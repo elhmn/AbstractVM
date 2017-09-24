@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:35 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 10:05:38 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 14:58:09 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class	Vm
 	Stack				*getStack(void) const;
 
 //actions
- 	static void			vm_exit(void);
+ 	void				vm_exit(void);
 	bool				stopped(void);
 	void				start(void);
 	void				stop(void);

@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 16:35:10 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 14:50:11 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 15:02:55 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include "error.h"
 #include <iostream>
 #include <cstdlib>
-
-// TODO:
-//  - Don't forget to implement catch the required exceptions
 
 bool	Stack::verbose = false;
 
@@ -72,8 +69,6 @@ void		Stack::push(IOperand const *o)
 	this->_stack->push(o);
 }
 
-//assert that the value at the top of the stack is an 8-bit integer
-//then display the corresponding ascii character to the output
 void	Stack::print(void) const
 {
 	IOperand const *o;
@@ -186,7 +181,6 @@ void	Stack::div(void)
 	this->_stack->pop();
 	b = this->_stack->top();
 	this->_stack->pop();
-	// don't forget to throw the div by zero exception
 	this->push(*b / *a);
 }
 
@@ -205,7 +199,17 @@ void	Stack::mod(void)
 	this->_stack->pop();
 	b = this->_stack->top();
 	this->_stack->pop();
-	// don't forget to throw the mod by zero exception
-	// and check also whether operand types is float or fouble
 	this->push(*b % *a);
+}
+
+void	Stack::clear(void)
+{
+	if (!this->_stack)
+		return ;
+	while (!this->_stack->empty())
+	{
+		delete(this->_stack->top());
+		this->_stack->pop();
+	}
+	this->_stack = NULL;
 }
