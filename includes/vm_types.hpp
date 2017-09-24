@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 21:45:29 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 19:00:47 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 11:05:04 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdint.h>
 # include <cfloat>
+
+# define ABS(x) (x < 0) ? -x : x
 
 typedef int8_t		t_int8;
 typedef int16_t		t_int16;

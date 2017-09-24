@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 19:02:17 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 19:06:19 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 11:14:56 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static eOperandType		typeTab[5] = {Int8, Int16, Int32, Float, Double};
 static double			limMax[5] = {INT8_MAX, INT16_MAX, INT32_MAX, FLT_MAX, DBL_MAX};
-// static double		limMIN[5] = {INT8_MIN, INT16_MIN, INT32_MIN, FLT_MIN, DBL_MIN};
+// static double		limMin[5] = {INT8_MIN, INT16_MIN, INT32_MIN, FLT_MIN, DBL_MIN};
 static std::string		opTab[5] = {K_ADD, K_SUB, K_MUL, K_DIV, K_MOD};
 
 static bool				over_add(t_double a, t_double b, int i)
@@ -26,6 +26,7 @@ static bool				over_add(t_double a, t_double b, int i)
 	return (a > limMax[i] - b);
 }
 
+// 	a - b overflow always false
 static bool				over_sub(t_double a, t_double b, int i)
 {
 	(void)a;
@@ -36,31 +37,41 @@ static bool				over_sub(t_double a, t_double b, int i)
 
 static bool				over_mul(t_double a, t_double b, int i)
 {
-	(void)a;
-	(void)b;
-	(void)i;
+	if ((a > 0 && b > 0)
+			|| (a < 0 && b < 0))
+	{
+		if (b < 0)
+			return (a < limMax[i] / b);
+		return (a > limMax[i] / b);
+	}
 	return (false);
 }
 
 static bool				over_div(t_double a, t_double b, int i)
 {
-
-	(void)a;
-	(void)b;
-	(void)i;
+	if ((a > 0 && b > 0)
+			|| (a < 0 && b < 0))
+	{
+		if (ABS(b) < 1)
+		{
+			if (b < 0)
+				return (a < limMax[i] * b);
+			return (a > limMax[i] * b);
+		}
+	}
 	return (false);
 }
 
+// 	a % b overflow always false
 static bool				over_mod(t_double a, t_double b, int i)
 {
-
 	(void)a;
 	(void)b;
 	(void)i;
 	return (false);
 }
 
-typedef  bool				(*t_over_f)(t_double a, t_double b, int i);
+typedef  bool			(*t_over_f)(t_double a, t_double b, int i);
 
 static t_over_f			overTab[5] = {
 											over_add,
