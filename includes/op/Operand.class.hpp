@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:20:02 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 10:45:20 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 11:27:36 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ IOperand const *Operand<T>::operator+(IOperand const &rhs) const
 	type = (this->getPrecision() < rhs.getPrecision())
 				? rhs.getType() : this->getType();
 	check_overflow(K_ADD, type, a, b);
-// 	check_downflow(type, a, b);
+	check_downflow(K_ADD, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() + b)));
 }
@@ -187,7 +187,7 @@ IOperand const *Operand<T>::operator-(IOperand const &rhs) const
 	type = (this->getPrecision() < rhs.getPrecision())
 				? rhs.getType() : this->getType();
 	check_overflow(K_SUB, type, a, b);
-// 	check_downflow(type, a, b);
+	check_downflow(K_SUB, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() - b)));
 }
@@ -204,7 +204,7 @@ IOperand const *Operand<T>::operator*(IOperand const &rhs) const
 	type = (this->getPrecision() < rhs.getPrecision())
 				? rhs.getType() : this->getType();
 	check_overflow(K_MUL, type, a, b);
-// 	check_downflow(type, a, b);
+	check_downflow(K_MUL, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 			this->getValue() * std::stod(rhs.toString()))));
 }
@@ -223,7 +223,7 @@ IOperand const *Operand<T>::operator/(IOperand const &rhs) const
 	if (b == 0)
 		throw E_DIV;
 	check_overflow(K_DIV, type, a, b);
-// 	check_downflow(type, a, b);
+	check_downflow(K_DIV, type, a, b);
  	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 				this->getValue() / std::stod(rhs.toString()))));
 }
@@ -242,7 +242,7 @@ IOperand const *Operand<T>::operator%(IOperand const &rhs) const
 	if (b == 0)
 		throw E_MOD;
 	check_overflow(K_MOD, type, a, b);
-// 	check_downflow(type, a, b);
+	check_downflow(K_MOD, type, a, b);
 	return (Factory::getInstance()->createOperand(type, nbrToString(type,
 				fmod(static_cast<t_double>(this->getValue()),
 					static_cast<t_double>(std::stod(rhs.toString()))))));
