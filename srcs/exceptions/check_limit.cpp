@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 19:02:17 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 11:57:09 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/24 12:07:01 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static std::string		opTab[5] = {K_ADD, K_SUB, K_MUL, K_DIV, K_MOD};
 
 static bool				over_add(t_double a, t_double b, int i)
 {
-	return (a > limMax[i] - b);
+	return ((b > 0) ? a > limMax[i] - b : false);
 }
 
 static bool				over_sub(t_double a, t_double b, int i)
 {
-	return (a > limMax[i] + b);
+	return ((b < 0) ? a > limMax[i] + b : false);
 }
 
 static bool				over_mul(t_double a, t_double b, int i)
@@ -79,15 +79,14 @@ static bool				over_mod(t_double a, t_double b, int i)
 ** Down flow functions
 */
 
-// a + b < limMin[i]
 static bool				down_add(t_double a, t_double b, int i)
 {
-	return (a < limMin[i] - b);
+	return ((b > 0) ? a < limMin[i] - b : false);
 }
 
 static bool				down_sub(t_double a, t_double b, int i)
 {
-	return (a < limMin[i] + b);
+	return ((b < 0) ? a < limMin[i] + b : true);
 }
 
 static bool				down_mul(t_double a, t_double b, int i)
@@ -162,15 +161,11 @@ void		check_overflow(std::string op, eOperandType type, t_double a, t_double b)
 					throw E_OVERFLOW;
 			}
 		}
-// 		std::cout << "limMax[" << i << "] - " << b << " =  "<< limMax[i] - b << std::endl;//_DEBUG_//
-// 		std::cout << "limMax[" << i << "] = " << limMax[i] << std::endl;//_DEBUG_//
-// 		std::cout << "typeTab[" << i << "] = " << typeTab[i] << std::endl;//_DEBUG_//
 	}
 }
 
 void		check_downflow(std::string op, eOperandType type, t_double a, t_double b)
 {
-	std::cout << "type = " << type << " | a = [" << a << "] | b = [" << b << " ]"<< std::endl;//_DEBUG_//
 	for (int i = 0; i < 5; i++)
 	{
 		if (typeTab[i] == type)
@@ -182,8 +177,5 @@ void		check_downflow(std::string op, eOperandType type, t_double a, t_double b)
 					throw E_DOWNFLOW;
 			}
 		}
-// 		std::cout << "limMax[" << i << "] - " << b << " =  "<< limMax[i] - b << std::endl;//_DEBUG_//
-// 		std::cout << "limMax[" << i << "] = " << limMax[i] << std::endl;//_DEBUG_//
-// 		std::cout << "typeTab[" << i << "] = " << typeTab[i] << std::endl;//_DEBUG_//
 	}
 }
