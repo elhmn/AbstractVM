@@ -6,7 +6,7 @@
 #    By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/22 16:40:12 by bmbarga           #+#    #+#              #
-#    Updated: 2017/09/24 13:23:55 by bmbarga          ###   ########.fr        #
+#    Updated: 2017/09/27 00:43:53 by mc               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,8 @@ LIB = -lm
 
 CC = clang++
 
+.PHONY: all home clean fclean test re test
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -102,3 +104,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+test:
+	./test/test.sh
