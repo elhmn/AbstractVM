@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 19:02:17 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/30 16:58:07 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/30 17:11:58 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static eOperandType		typeTab[5] = {Int8, Int16, Int32, Float, Double};
 static double			limMax[5] = {INT8_MAX, INT16_MAX,
 										INT32_MAX, FLT_MAX, DBL_MAX};
 static double			limMin[5] = {INT8_MIN, INT16_MIN,
-										INT32_MIN, FLT_MIN, DBL_MIN};
+										INT32_MIN, -FLT_MAX, -DBL_MAX};
 static std::string		opTab[5] = {K_ADD, K_SUB, K_MUL, K_DIV, K_MOD};
 
 
@@ -88,7 +88,7 @@ static bool				down_add(t_double a, t_double b, int i)
 
 static bool				down_sub(t_double a, t_double b, int i)
 {
-	return ((b < 0) ? a < limMin[i] + b : true);
+	return ((b < 0) ? a < limMin[i] + b : false);
 }
 
 static bool				down_mul(t_double a, t_double b, int i)

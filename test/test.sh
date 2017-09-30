@@ -3,7 +3,7 @@
 # FATAL=t
 
 NAME=avm
-DATA_DIR=files
+DATA_DIR=data
 
 CLR_GREEN="\033[32;01m"
 CLR_RED="\033[31;01m"
@@ -24,7 +24,7 @@ divide
 multiply"
 
 FLOW="overflow
-downflow"
+underflow"
 
 function success_msg() {
 	echo -ne "$CLR_GREEN$1$CLR_RESET"
@@ -68,8 +68,8 @@ function test_vm() {
 $input
 EOF
 
-    # ret=$?
-    # test $ret == 0 || fail "$input" "$ret"
+    ret=$?
+    test $ret == 0 || fail "$input" "$ret"
     diff $TEST_LOG_FILE $CTRL_LOG_FILE > /dev/null || fail "$input"
 
     success_msg "."
@@ -85,35 +85,35 @@ test_vm "$(< $DATA_DIR/example.avm)" "42
 3341.25
 "
 
-test_vm "$(< $DATA_DIR/zero_divide_error.avm)" "Error : Runtime : Division by 0
+test_vm "$(< $DATA_DIR/zero_divide_error.avm)" "Zero Divide Error
 "
 
 for f in $FLOW; do
     for t in $TYPES; do
-        test_vm "$(< $DATA_DIR/"$f"_error_"$t".avm)" "Error : Runtime : ${f^}
+        test_vm "$(< $DATA_DIR/"$f"_error_"$t".avm)" "${f^} Error
 "
 
         for o in $OP; do
             if test "$o" == "divide" && echo $t | grep -q int; then
                 continue
             fi
-            test_vm "$(< $DATA_DIR/"$f"_error_"$t"_"$o".avm)" "Error : Runtime : ${f^}
+            test_vm "$(< $DATA_DIR/"$f"_error_"$t"_"$o".avm)" "${o^} ${f^} Error
 "
         done
     done
 done
 
-test_vm "$(< $DATA_DIR/syntax_error.avm)" "Error : Lexical error : push int16(32 ;)
-Error : Lexical error : pu int(32))
+test_vm "$(< $DATA_DIR/syntax_error.avm)" "Syntax error: 'push int16(32 ;)'.
+Syntax error: 'pu int(32))'.
 "
 
-test_vm "$(< $DATA_DIR/empty_stack_error.avm)" "Error : Runtime : Empty stack
+test_vm "$(< $DATA_DIR/empty_stack_error.avm)" "Pop error: empty stack
 "
 
-test_vm "$(< $DATA_DIR/assert_error.avm)" "Error : Runtime : Assert not true
+test_vm "$(< $DATA_DIR/assert_error.avm)" "Assert error: values differ
 "
 
-test_vm "$(< $DATA_DIR/missing_operand_error.avm)" "Error : Runtime : Too few operand
+test_vm "$(< $DATA_DIR/missing_operand_error.avm)" "Add error: only one value in stack
 "
 
 test_vm "$(< $DATA_DIR/plop.avm)" "plop!"
