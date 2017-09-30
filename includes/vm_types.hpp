@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 21:45:29 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/24 12:58:06 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/30 18:19:41 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ enum				eOperandType
 
 void		check_op_overflow(std::string op,
 				eOperandType type, t_double a, t_double b);
-void		check_op_downflow(std::string op,
+void		check_op_underflow(std::string op,
 				eOperandType type, t_double a, t_double b);
 void		check_overflow(eOperandType type, t_double a);
-void		check_downflow(eOperandType type, t_double a);
+void		check_underflow(eOperandType type, t_double a);
 t_double	check_limits(eOperandType type, t_double a);
 
 #endif

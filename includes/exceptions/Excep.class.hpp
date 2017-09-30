@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 13:48:39 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/23 18:04:15 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/30 18:20:24 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define E_DIV					Excep<std::runtime_error>("Division by 0")
 # define E_MOD					Excep<std::runtime_error>("Modulo by 0")
 # define E_OVERFLOW				Excep<std::runtime_error>("Overflow")
-# define E_DOWNFLOW				Excep<std::runtime_error>("Downflow")
+# define E_UNDERFLOW			Excep<std::runtime_error>("Underflow")
 # define E_EMPTYSTACK			Excep<std::runtime_error>("Empty stack")
 # define E_NOEXIT				Excep<std::runtime_error>("No exit command")
 # define E_ASSERT				Excep<std::runtime_error>("Assert not true")

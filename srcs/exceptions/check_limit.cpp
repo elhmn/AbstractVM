@@ -6,7 +6,7 @@
 /*   By: bmbarga <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 19:02:17 by bmbarga           #+#    #+#             */
-/*   Updated: 2017/09/30 17:11:58 by bmbarga          ###   ########.fr       */
+/*   Updated: 2017/09/30 18:21:08 by bmbarga          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool				over_div(t_double a, t_double b, int i)
 	return (false);
 }
 
-// 	a % b downflow always false
+// 	a % b underflow always false
 static bool				over_mod(t_double a, t_double b, int i)
 {
 	(void)a;
@@ -78,20 +78,20 @@ static bool				over_mod(t_double a, t_double b, int i)
 }
 
 /*
-** Down flow functions
+** under flow functions
 */
 
-static bool				down_add(t_double a, t_double b, int i)
+static bool				under_add(t_double a, t_double b, int i)
 {
 	return ((b > 0) ? a < limMin[i] - b : false);
 }
 
-static bool				down_sub(t_double a, t_double b, int i)
+static bool				under_sub(t_double a, t_double b, int i)
 {
 	return ((b < 0) ? a < limMin[i] + b : false);
 }
 
-static bool				down_mul(t_double a, t_double b, int i)
+static bool				under_mul(t_double a, t_double b, int i)
 {
 	if ((a > 0 && b < 0)
 			|| (a < 0 && b > 0))
@@ -106,7 +106,7 @@ static bool				down_mul(t_double a, t_double b, int i)
 	return (false);
 }
 
-static bool				down_div(t_double a, t_double b, int i)
+static bool				under_div(t_double a, t_double b, int i)
 {
 	if ((a > 0 && b < 0)
 			|| (a < 0 && b > 0))
@@ -121,8 +121,8 @@ static bool				down_div(t_double a, t_double b, int i)
 	return (false);
 }
 
-// 	a % b downflow always false
-static bool				down_mod(t_double a, t_double b, int i)
+// 	a % b underflow always false
+static bool				under_mod(t_double a, t_double b, int i)
 {
 	(void)a;
 	(void)b;
@@ -140,12 +140,12 @@ static t_lim_f			overTab[5] = {
 											over_mod
 									};
 
-static t_lim_f			downTab[5] = {
-											down_add,
-											down_sub,
-											down_mul,
-											down_div,
-											down_mod
+static t_lim_f			underTab[5] = {
+											under_add,
+											under_sub,
+											under_mul,
+											under_div,
+											under_mod
 									};
 
 
@@ -166,7 +166,7 @@ void		check_op_overflow(std::string op,
 	}
 }
 
-void		check_op_downflow(std::string op,
+void		check_op_underflow(std::string op,
 								eOperandType type, t_double a, t_double b)
 {
 	for (int i = 0; i < 5; i++)
@@ -176,8 +176,8 @@ void		check_op_downflow(std::string op,
 			for (int j = 0; j < 5; j++)
 			{
 				if (op == opTab[j]
-						&& downTab[j](a, b, i))
-					throw E_DOWNFLOW;
+						&& underTab[j](a, b, i))
+					throw E_UNDERFLOW;
 			}
 		}
 	}
@@ -195,14 +195,14 @@ void		check_overflow(eOperandType type, t_double a)
 	}
 }
 
-void		check_downflow(eOperandType type, t_double a)
+void		check_underflow(eOperandType type, t_double a)
 {
 	for (int i = 0; i < 5; i++)
 	{
 		if (typeTab[i] == type)
 		{
 			if (a < limMin[i])
-				throw E_DOWNFLOW;
+				throw E_UNDERFLOW;
 		}
 	}
 }
@@ -210,6 +210,6 @@ void		check_downflow(eOperandType type, t_double a)
 t_double		check_limits(eOperandType type, t_double a)
 {
 	check_overflow(type, a);
-	check_downflow(type, a);
+	check_underflow(type, a);
 	return (a);
 }
