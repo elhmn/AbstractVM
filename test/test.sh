@@ -52,7 +52,7 @@ function fail() {
         cat $CTRL_LOG_FILE
 
         error_msg "\nDiff:"
-        diff --color=always $TEST_LOG_FILE $CTRL_LOG_FILE
+        diff $TEST_LOG_FILE $CTRL_LOG_FILE
     fi
 
     test $FATAL && exit 1
